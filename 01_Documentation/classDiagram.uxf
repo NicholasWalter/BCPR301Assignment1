@@ -4,31 +4,8 @@
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2350</x>
-      <y>260</y>
-      <w>210</w>
-      <h>190</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
-Package::FatClass
-{Some Properties}
---
--id: Long
-_-ClassAttribute: Long_
---
-#Operation(i: int): int
-/+AbstractOperation()/
---
-Responsibilities
--- Resp1
-*-- Resp2*</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>850</x>
-      <y>330</y>
+      <x>620</x>
+      <y>160</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
@@ -41,8 +18,8 @@ display(Employee[])</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1090</x>
-      <y>330</y>
+      <x>860</x>
+      <y>160</y>
       <w>210</w>
       <h>70</h>
     </coordinates>
@@ -55,8 +32,8 @@ display(Employee[])</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>850</x>
-      <y>530</y>
+      <x>620</x>
+      <y>360</y>
       <w>210</w>
       <h>170</h>
     </coordinates>
@@ -75,8 +52,8 @@ datetime: birthday
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>940</x>
-      <y>390</y>
+      <x>710</x>
+      <y>220</y>
       <w>280</w>
       <h>160</h>
     </coordinates>
@@ -86,8 +63,8 @@ datetime: birthday
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>940</x>
-      <y>390</y>
+      <x>710</x>
+      <y>220</y>
       <w>30</w>
       <h>160</h>
     </coordinates>
@@ -97,8 +74,8 @@ datetime: birthday
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
-      <y>330</y>
+      <x>310</x>
+      <y>160</y>
       <w>210</w>
       <h>140</h>
     </coordinates>
@@ -113,8 +90,8 @@ Employee[]: find(Employee)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>290</y>
+      <x>400</x>
+      <y>120</y>
       <w>340</w>
       <h>60</h>
     </coordinates>
@@ -124,8 +101,8 @@ Employee[]: find(Employee)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>290</y>
+      <x>400</x>
+      <y>120</y>
       <w>630</w>
       <h>60</h>
     </coordinates>
@@ -135,8 +112,8 @@ Employee[]: find(Employee)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>540</x>
-      <y>530</y>
+      <x>310</x>
+      <y>360</y>
       <w>210</w>
       <h>140</h>
     </coordinates>
@@ -151,8 +128,8 @@ Employee[]: find(Employee)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>290</x>
-      <y>530</y>
+      <x>60</x>
+      <y>360</y>
       <w>210</w>
       <h>140</h>
     </coordinates>
@@ -167,8 +144,8 @@ Employee[]: find(Employee)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>380</x>
-      <y>460</y>
+      <x>150</x>
+      <y>290</y>
       <w>280</w>
       <h>90</h>
     </coordinates>
@@ -178,8 +155,8 @@ Employee[]: find(Employee)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>630</x>
-      <y>460</y>
+      <x>400</x>
+      <y>290</y>
       <w>30</w>
       <h>90</h>
     </coordinates>
@@ -189,8 +166,8 @@ Employee[]: find(Employee)</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>1240</x>
-      <y>540</y>
+      <x>1010</x>
+      <y>370</y>
       <w>120</w>
       <h>40</h>
     </coordinates>
@@ -200,8 +177,8 @@ Employee[]: find(Employee)</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>1240</x>
-      <y>620</y>
+      <x>1010</x>
+      <y>440</y>
       <w>120</w>
       <h>40</h>
     </coordinates>
@@ -211,12 +188,23 @@ Employee[]: find(Employee)</panel_attributes>
   <element>
     <id>UMLUseCase</id>
     <coordinates>
-      <x>1240</x>
-      <y>690</y>
+      <x>1010</x>
+      <y>510</y>
       <w>120</w>
       <h>40</h>
     </coordinates>
     <panel_attributes>test.py</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLUseCase</id>
+    <coordinates>
+      <x>1010</x>
+      <y>570</y>
+      <w>120</w>
+      <h>40</h>
+    </coordinates>
+    <panel_attributes>config.py</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>

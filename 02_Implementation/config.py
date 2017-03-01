@@ -67,4 +67,3 @@ def extend_configuration(new_info):
     except:
         return False
     return True
-

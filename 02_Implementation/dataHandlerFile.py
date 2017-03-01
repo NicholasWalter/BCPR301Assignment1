@@ -3,8 +3,13 @@ reads data from and writes data to the configured csv file containing
 employee information
 """
 
+# python imports
+import datetime
+
+# project imports
 import config
 import employee
+import util
 
 
 def save_employees(to_save, target_file):
@@ -31,15 +36,5 @@ def get_all_employees():
                 continue
             split = line.split(",")
             try:
-                emp_id = split[0]                           # stays string
-                gender = split[1]                           # stays string
-                sales = int(split[2])                       # integer
-                bmi = split[3]                              # stays string
-                salary = int(split[4])                      # integer
-                birthday_split = split[5].split("-")        # birthday in three parts
-                year = int(birthday_split[0])               # integer
-                month = int(birthday_split[1])              # integer
-                day = int(birthday_split[2])                # integer
-                bd = datetime.datetime(year, month, day)
-                new_employee = employee.Employee(split[0], split[1], split[2], split[3])
+                
 
