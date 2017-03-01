@@ -1,6 +1,5 @@
 import datetime
 
-
 class Person:
     def __init__(self, gender, bmi, birthday, age):
         self.gender = gender
@@ -9,7 +8,7 @@ class Person:
         self.age = age
 
     def __str__(self):
-        gender_string = {"m": "Male", "f": "Female"}[self.gender.lower()]
+        gender_string = {"m":"Male", "f":"Female"}[self.gender.lower()]
         return "{} Person with bmi {}; {} years old".format(gender_string, self.bmi, self.age)
 
 
@@ -25,10 +24,7 @@ class Employee(Person):
 
 
 # testing functionality
-def test():
-    bd = datetime.datetime(1995, 10, 14)
-    a = Employee("empID", "m", 999, "normal", 77, bd, 21)
-    print(a)
+bd = datetime.datetime(1995, 10, 14)
+a = Employee("empID", "m", 999, 88, 77, bd, 21)
+print(a)
 
-if __name__ == "__main__":
-    test()

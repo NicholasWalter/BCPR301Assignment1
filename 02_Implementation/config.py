@@ -8,12 +8,16 @@ functionality implemented in a way that makes sure the configuration file is
 only read from storage once so that disk access is reduced.
 """
 
+import os
+
+
 configuration = {}
 got_configuration = False
 
 base_configurations = []
 
 def get_config():
+    raise NotImplementedError
     global configuration
     global got_configuration
 
@@ -21,6 +25,19 @@ def get_config():
         return configuration
     result = {}
 
+    file_directory = os.path.dirname(os.path.realpath(__file__))
+    os.chdir(file_directory)
+    with open("config.txt") as file:
+        got_delimiter = False
+        delimiter = ""
+        for line in file:
+            # skip comment and empty lines
+            if line.startswith("$") or len(line) == 0:
+                continue
+
+            if not got_delimiter:
+                pass
+                # TODO
 
 
     configuration = result
@@ -50,3 +67,4 @@ def extend_configuration(new_info):
     except:
         return False
     return True
+
