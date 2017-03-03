@@ -81,7 +81,8 @@ def validate_input_salary(salary_input):
     @return:
         True if the input is valid, otherwise False
     """
-    return True in [_valid_input_integer(sales_input, 2), _valid_input_integer(sales_input, 3)]
+    return True in [_valid_input_integer(salary_input, 2),
+                    _valid_input_integer(salary_input, 3)]
 
 def validate_input_birthday(birthday_input):
     """
@@ -126,10 +127,24 @@ def _valid_input_integer(integer_input, digits):
         integer_input: String to check
         digits: the number of digits the input may have
     """
+    print("##input_ .{}. .{}.".format(integer_input, digits))
     if len(integer_input) != digits:
+        print("####wrong length")
         return False
     try:
         a = int(integer_input)
     except:
+        print("####not int")
         return False
+    print("####okay")
     return True
+
+################################################################################
+## Testing functionality                                                      ##
+################################################################################
+
+def test_input_integer():
+    print("testing inputValidator._valid_input_integer()")
+    test_cases = [0, 1000, 99, 999]
+    for i in test_cases:
+        pass

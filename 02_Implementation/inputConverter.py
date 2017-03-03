@@ -9,7 +9,7 @@ conversion functions may throw a ValueError if the input is valid
 import datetime
 
 # project imports
-import util
+import inputValidator
 
 
 def convert_input(input, input_type):
@@ -25,44 +25,45 @@ def convert_input(input, input_type):
                     "sales": convert_sales, "salary": convert_salary,
                     "bday": convert_birthday}
     if not input_type in converters:
-        raise ValueError("Use one of the following types: " + list(converters.keys()))
+        raise ValueError("Use one of the following types: " +
+                            str(list(converters.keys())))
     try:
         return converters[input_type](input)
     except ValueError as err:
         raise err
 
 def convert_employee_id(employee_id):
-    if not util.validate_input_employee_id(employee_id):
+    if not inputValidator.validate_input_employee_id(employee_id):
         raise ValueError("Input for employee id invalid: {}".format(employee_id))
     return employee_id.upper()
 
 def convert_gender(gender):
-    if not util.validate_input_gender(gender):
+    if not inputValidator.validate_input_gender(gender):
         raise ValueError("Input for ǵender invalid: {}".format(gender))
     return gender.lower()
 
 def convert_age(age):
-    if not util.validate_input_age(age):
+    if not inputValidator.validate_input_age(age):
         raise ValueError("Input for age invalid: {}".format(age))
     return int(age)
 
 def convert_bmi(bmi):
-    if not util.validate_input_bmi(bmi):
+    if not inputValidator.validate_input_bmi(bmi):
         raise ValueError("Input for BMI invalid: {}".format(bmi))
     return bmi.lower()
 
 def convert_sales(sales):
-    if not util.validate_input_sales(sales):
+    if not inputValidator.validate_input_sales(sales):
         raise ValueError("Input for sales invalid: {}".format(sales))
     return int(sales)
 
 def convert_salary(salary):
-    if not util.validate_input_salary(salary):
+    if not inputValidator.validate_input_salary(salary):
         raise ValueError("Input for salary invalid: {}".format(salary))
     return int(salary)
 
 def convert_birthday(birthday):
-    if not util.validate_input_birthday(birthday):
+    if not inputValidator.validate_input_birthday(birthday):
         raise ValueError("Input for birthday invalid: {}".format(birthday))
     split = birthday.split("-")
     year = int(split[0])

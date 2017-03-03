@@ -35,6 +35,29 @@ class Employee(Person):
     def __str__(self):
         return Person.__str__(self) + "; Employee with id {}".format(self.employee_id)
 
+def create_employee(attributes):
+    """
+    creates an employee using the supplied data
+    @params:
+        attributes: dict containing attributes of employees to create
+        must contain: "empid", "gender", "sales", "bmi", salary", "birthday",
+        "age"
+    @return:
+        new Employee object
+    @raises:
+        ValueError if the supplied dict did not contain one of the required
+        attributes
+    """
+    neccessary_keys = ["empid", "gender", "sales", "bmi", "salary", "birthday",
+                        "age"]
+    for key in neccessary_keys:
+        if not key in attributes.keys():
+            raise ValueError("employee could not be created: {} is missing".format(key))
+    return Employee(attributes["empid"], attributes["gender"],
+                    attributes["sales"], attributes["bmi"],
+                    attributes["salary"], attributes["birthday"],
+                    attributes["age"])
+
 
 # testing functionality
 def test():
