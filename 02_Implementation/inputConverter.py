@@ -23,9 +23,10 @@ def convert_input(input, input_type):
     converters = {"empid": convert_employee_id, "gender": convert_gender,
                     "age": convert_age, "bmi": convert_bmi,
                     "sales": convert_sales, "salary": convert_salary,
-                    "bday": convert_birthday}
+                    "birthday": convert_birthday}
     if not input_type in converters:
-        raise ValueError("Use one of the following types: " +
+        raise ValueError("Invalid input type: {}. Use one of the following types: "
+                            .format(input_type) +
                             str(list(converters.keys())))
     try:
         return converters[input_type](input)

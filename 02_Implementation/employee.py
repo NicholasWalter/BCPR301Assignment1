@@ -35,6 +35,22 @@ class Employee(Person):
     def __str__(self):
         return Person.__str__(self) + "; Employee with id {}".format(self.employee_id)
 
+    def equals(self, other):
+        """
+        checks whether this Employee object and the supplied other are identical
+        @params:
+            self: this object
+            other: another Employee object
+        """
+        # using and instead of && to make use of short circuiting
+        return self.employee_id == other.employee_id and 
+                self.gender == other.gender and
+                self.sales == other.sales and
+                self.bmi == other.bmi and
+                self.salary == other.salary and
+                self.birthday == other.birthday and
+                self.age == other.age
+
 def create_employee(attributes):
     """
     creates an employee using the supplied data

@@ -1,4 +1,15 @@
+"""
+this module offers miscellaneuos functionality that could not be put anywhere
+else
+"""
+
+# python imports
 import datetime
+import sys
+
+# project imports
+import IOHelper
+
 
 def calculate_age(born):
     """
@@ -11,3 +22,7 @@ def calculate_age(born):
     """
     today = datetime.date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+
+def exit():
+    IOHelper.stdOut("Exiting program. Goodbye.")
+    sys.exit()

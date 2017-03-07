@@ -62,15 +62,13 @@ def get_all_employees(source_file = "XXX"):
             line_counter += 1
     return[result, errors]
 
-def check_if_employees_exist(to_check):
+def check_if_employee_exists(to_check):
     """
-    checks if the supplied employees already exist in the csv file
-    since employee id should be unique, uses this instead of reading full line
+    checks if the supplied employee already exists in the csv file
     @params:
-        to_check: list of employees to check
+        to_check: employee to check
     @return:
-        list of booleans matching employee list. true if employee exists, 
-        otherwise false
+        true if the employee exists, otherwise false
     """
     raise NotImplementedError
 
