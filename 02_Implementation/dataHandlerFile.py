@@ -4,6 +4,7 @@ employee information
 """
 
 # python imports
+import abc
 import datetime
 import os
 
@@ -31,12 +32,11 @@ class DataHandlerFile(DataHandlerAbstract):
             employees: List of Employee objects to save
         @return: -
         """
+        # TODO: HIGH: check if employees exist first, ignore description
         new_lines = [emp.get_csv_line() for emp in employees]
         with open(self._file, "a") as target:
             for line in new_lines:
                 target.write(line)
-
-        raise NotImplementedError
 
     def save_employee(self, employee):
         """
@@ -45,7 +45,7 @@ class DataHandlerFile(DataHandlerAbstract):
             employee: Employee object to save
         @return: -
         """
-        self.save_employees([employee])[0]
+        self.save_employees([employee])
 
     def get_all_employees(self):
         """
@@ -76,7 +76,7 @@ class DataHandlerFile(DataHandlerAbstract):
                 day = int(split2[2])
                 bday = datetime.date(year, month, day)
                 age = int(split[6])
-                attributes = {"empid": empid, "gender": gender, "sales": sales,
+                attributes = {"empid": emp_id, "gender": gender, "sales": sales,
                                 "bmi": bmi, "salary": salary, "birthday": bday,
                                 "age": age}
                 # TODO: high: catch ValueError from employee creation
@@ -137,7 +137,45 @@ class DataHandlerFile(DataHandlerAbstract):
 ## Testing functionality                                                      ##
 ################################################################################
 
+def _get_test_object():
+    path = os.path.dirname(os.path.realpath(__file__))
+    file = "01_datasources/employees.csv"
+    full_path = os.path.join(path, file)
+    return DataHandlerFile(full_path)
 
+def _test_get_all_employees():
+    data = _get_test_object()
+    [print(emp) for emp in data.get_all_employees()]
+
+def _test_employee_exists():
+    data = _get_test_object()
+    print("should be True: {}".format(data.employee_exists("A123")))
+    print("should be False: {}".format(data.employee_exists("X789")))
+
+def _test_update_employee():
+    bday = datetime.date(1995, 10, 14)
+    new_emp = employee.Employee("A123", "m", 999, "normal", 77, bday, 21)
+    new_emp2 = employee.Employee("X999", "m", 2, "normal", 77, bday, 21)
+    data = _get_test_object()
+    data.update_employee(new_emp)
+    data.update_employee(new_emp2)
+
+def _test_get_employee():
+    bday = datetime.date(1995, 10, 14)
+    test_emp = employee.Employee("A123", "m", 2, "normal", 77, bday, 21)
+    data = _get_test_object()
+    got_emp = data.get_employee("A123")
+    print("should be True: {}".format(test_emp.equals(got_emp)))
+
+def _test_save_employee():
+    bday = datetime.date(1995, 10, 14)
+    test_emp = employee.Employee("A234", "m", 2, "normal", 77, bday, 21)
+    data = _get_test_object()
+    data.save_employee(test_emp)
 
 if __name__ == "__main__":
-    pass
+    _test_get_all_employees()
+    _test_employee_exists()
+    _test_update_employee()
+    _test_get_employee()
+    _test_save_employee()
