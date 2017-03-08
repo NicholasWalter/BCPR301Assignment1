@@ -23,30 +23,6 @@ class DataHandlerFile(DataHandlerAbstract):
         DataHandlerAbstract.__init__(self)
         self._file = file_path
 
-    def save_employees(self, employees):
-        """
-        saves the provided list of employees to the datasource
-        NOTE: use employee_exists() before using this to make sure no duplicates
-        are created!
-        @params:
-            employees: List of Employee objects to save
-        @return: -
-        """
-        # TODO: HIGH: check if employees exist first, ignore description
-        new_lines = [emp.get_csv_line() for emp in employees]
-        with open(self._file, "a") as target:
-            for line in new_lines:
-                target.write(line)
-
-    def save_employee(self, employee):
-        """
-        saves the provided employee to the data source
-        @params:
-            employee: Employee object to save
-        @return: -
-        """
-        self.save_employees([employee])
-
     def get_all_employees(self):
         """
         reads the file this object was initiated with and returns all contained
@@ -83,33 +59,20 @@ class DataHandlerFile(DataHandlerAbstract):
                 employees.append(employee.create_employee(attributes))
         return employees
 
-
-    def get_employee(self, emp_id):
+    def save_employees(self, employees):
         """
-        gets the Employee object for the employee with the specified id.
-        if the employee id does not exist in the data source, will return None
+        saves the provided list of employees to the datasource
+        NOTE: use employee_exists() before using this to make sure no duplicates
+        are created!
         @params:
-            emp_id: String: employee id to look for
-        @return:
-            Employee object if an employee with the id exists, otherwise None
-            Since the employee id should be unique, returns the first employee
-            encountered in traversing the list that fits
+            employees: List of Employee objects to save
+        @return: -
         """
-        all_employees = self.get_all_employees()
-        for emp in all_employees:
-            if emp.employee_id == emp_id:
-                return emp
-        return None
-        
-    def employee_exists(self, emp_id):
-        """
-        checks if an employee with the provided id exists in the datasource
-        @params:
-            emp_id: String: employee id to check
-        @return:
-            True if the employee exists, otherwise False
-        """
-        return not self.get_employee(emp_id) is None
+        # TODO: HIGH: check if employees exist first, ignore description
+        new_lines = [emp.get_csv_line() for emp in employees]
+        with open(self._file, "a") as target:
+            for line in new_lines:
+                target.write(line)
 
     def update_employee(self, employee):
         """
@@ -128,6 +91,20 @@ class DataHandlerFile(DataHandlerAbstract):
                     lines.append(employee.get_csv_line())
                     continue
                 lines.append(line)
+
+        with open(self._file, "w") as target:
+            for line in lines:
+                target.write(line)
+
+    def delete_employees(self, employees):
+        ids = [emp.employee_id for emp in employees]
+        lines = []
+        with open(self._file) as source:
+            for line in source:
+                split = line.split(",")
+                if split[0] in ids:
+                    continue
+                line.append(line)
 
         with open(self._file, "w") as target:
             for line in lines:
