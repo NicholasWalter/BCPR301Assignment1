@@ -16,12 +16,26 @@ import inputConverter as IC
 
 
 class DataHandlerFile(DataHandlerAbstract):
-    def __init__(self, file_path):
+    def __init__(self, file_path = "XXX"):
         """
         initiates a DataHandlerFile object with the supplied file as datasource.
         """
         DataHandlerAbstract.__init__(self)
+        if file_path == "XXX":
+            file = "01_datasources/employees.csv"
+            path = os.path.dirname(os.path.realpath(__file__))
+            file_path = os.path.join(path, file)
         self._file = file_path
+        if not self._test_file():
+            e = "File at {} could not be found."
+            raise FileNotFoundError(e.format(self._file))
+
+    def _test_file(self):
+        try:
+            a = open(self._file, "r")
+        except FileNotFoundError as ferr:
+            return False
+        return True
 
     def get_all_employees(self):
         """

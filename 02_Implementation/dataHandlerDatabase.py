@@ -6,24 +6,52 @@ This does NOT protect against SQL injection at all
 """
 
 # python imports
+from datetime import date
 import pymysql
 
 # project imports
 from dataHandlerAbstract import DataHandlerAbstract
+import employee
 
 class DataHandlerDatabase(DataHandlerAbstract):
     
-    def __init__(self, db_ip, db_username, db_password, db):
+    def __init__(self, db_ip = "localhost", db_username = "pyaccess", 
+                    db_password = "bcpr301", db = "bcpr301_assignment1"):
+        DataHandlerAbstract.__init__(self)
         self.db_ip = db_ip
         self.db_username = db_username
         self.db_password = db_password
         self.db = db
+        if not self._test_connection():
+            e = "Connection to database at {} could not be established."
+            raise ConnectionError(e.format(self.db_ip))
+
+    def _test_connection(self):
+        try:
+            test_result = self._execute_command('SELECT test FROM connection_test')
+        except:
+            return False
+        return True
 
     def get_all_employees(self):
-        raise NotImplementedError
         command = "SELECT * FROM employees"
         lines = self._execute_command(command)
-        # TODO: parse lines, return employees
+
+        employees = []
+
+        for l in lines:
+            parameters = {}
+            parameters["empid"] = l[0]
+            parameters["gender"] = l[1]
+            parameters["age"] = int(l[2])
+            parameters["sales"] = int(l[3])
+            parameters["bmi"] = l[4]
+            parameters["salary"] = int(l[5])
+            bs = l[6].split("-")
+            bday = date(int(bs[0]), int(bs[1]), int(bs[2]))
+            parameters["birthday"] = bday
+            employees.append(employee.create_employee(parameters))
+        return employees
     
     def save_employees(self, employees):
         raise NotImplementedError
@@ -40,13 +68,13 @@ class DataHandlerDatabase(DataHandlerAbstract):
 
     def update_employee(self, emp):
         raise NotImplementedError
-        c = "UPDATE employees SET gender = "{}", age = {}, sales = {}, " + \
-            'bmi = "{}", salary = {}, birthday = "{}" WHERE id = "{}"'
+        c = 'UPDATE employees SET gender = "{}", age = {}, sales = {},' \
+            + ' bmi = "{}", salary = {}, birthday = "{}" WHERE id = "{}"'
         command = c.format(emp.gender, emp.age, emp.sales, emp.bmi, emp.salary,
                             emp.birthday, emp.employee_id)
         result = self._execute_command(command)
         if result[0].startswith("Query OK"):
-            continue
+           return 
         # TODO: Error handling
         
 

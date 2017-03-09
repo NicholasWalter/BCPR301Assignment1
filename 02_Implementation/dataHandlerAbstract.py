@@ -5,14 +5,16 @@ both DataHandlerFile and DataHandlerDatabase need.
 
 # python imports
 from abc import abstractmethod
+import abc
 
-class DataHandlerAbstract:
+class DataHandlerAbstract(metaclass=abc.ABCMeta):
     """
     this is an abstract class to define the interface of all DataHandler
     classes.
     """
 
     def __init__(self):
+        super.__init__(self)
         print("DataHandlerAbstract constructor")
         pass
 

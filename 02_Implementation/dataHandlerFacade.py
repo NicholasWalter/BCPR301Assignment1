@@ -10,16 +10,21 @@ though redundant, this is okay in the context of the assignment.
 import dataHandlerFile as file
 import dataHandlerDatabase as db
 
-def get_all_employees():
+def get_all_employees(source = None):
     """
     reads all employees and returns them in a list
         @params: -
         @return:
             list of employee objects, may be empty
     """
-    file_employees = file.get_all_employees()
-    db_employees = db.get_all_employees()
+    file_employees = file.DataHandlerFile().get_all_employees()
+    db_employees = db.DataHandlerDatabase().get_all_employees()
     
+    if source == "db":
+        return db_employees
+    elif source == "csv":
+        return file_employees
+
     # join the two lists
     # cannot use .extend() because the objects, while equal, are not identical
     for emp in file_employees:
