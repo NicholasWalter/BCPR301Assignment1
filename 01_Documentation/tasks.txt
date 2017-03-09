@@ -1,0 +1,15 @@
+1)  Support command-line arguments								ok
+2)  Has a line-oriented command interpreter based on cmd					ok
+3)  Display command line help of available commands						
+4)  Change options										ok
+5)  Validate your selections
+6)  Provides object-persistence/ object serialization using either pickle or shelve
+7)  Load data from a file									ok
+8)  Raises exceptions and provides exception handling						
+9)  Amount of error trapping and handling
+10) provide doctests
+11) provide unittests
+12) breadth of test coverage
+13) can deal with directories and file directions
+14) pretty print (pie charts etc)
+15) can save and read data from a database							ok
