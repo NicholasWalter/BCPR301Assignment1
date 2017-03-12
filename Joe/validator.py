@@ -1,3 +1,4 @@
+import datetime
 class Validator(object):
 	"""docstring for ClassName"""
 	#def __init__(self):
@@ -52,6 +53,35 @@ class Validator(object):
 		else:
 			result = False
 		return result
+	def is_valid_birthday(self, input_data):
+		result = False
+		#try:
+		if(datetime.datetime.strptime(input_data, '%d-%m-%Y')):
+			result = True
+		else:
+			result = False
+		#except ValueError: 
+		return result
+        	#raise ValueError("Incorrect data format, should be YYYY-MM-DD")
+	# def is_valid_birthday(self, input_data):
+	# 	result = False
+	# 	date = input_data.split("-")
+	# 	print(date)
+	# 	if date.__len__() == 3:
+	# 		if date[0].isdigit() and date[0] <= 2:
+	# 			if date[1].isdigit() and date[1] <= 2:
+	# 				if date[3].isdigit() and date[3] == 4:
+	# 					result = True
+	# 				else:
+	# 					result = False
+	# 			else:
+	# 				result = False
+	# 		else:
+	# 			result = False
+	# 	else:
+	# 		result = False
+	# 	return result
+
 # if __name__ == '__main__':
 # 	v = Validator()
 # 	data = input("input ID :")

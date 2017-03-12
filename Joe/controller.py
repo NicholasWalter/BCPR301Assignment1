@@ -14,12 +14,14 @@ class Controller(object):
 		self.validator = Validator()
 	def new_employee(self):
 		input_data = dict(self.input_employee_id())
+		input_data.update(self.input_birthday())
 		input_data.update(self.input_gender())
 		input_data.update(self.input_age())
 		input_data.update(self.input_sales())
 		input_data.update(self.input_BMI())
 		input_data.update(self.input_salary())
-		self.view.show(input_data)
+		self.model.add_the_employee(input_data)
+		self.__view.show(input_data)
 
 	# def input_employee_id(self):
 	# 	result = False
@@ -77,6 +79,7 @@ class Controller(object):
 			 except ValueError:
 			     self.__view.show("Oops!  That was no valid number.  Try again...")
 		return {"Sales" : input_data}
+
 	def input_BMI(self):
 		options = ['Normal', 'Overweight', 'Obesity', 'Underweight']
 		for (i, item) in enumerate(options):
@@ -93,6 +96,7 @@ class Controller(object):
 			 except ValueError:
 			     self.__view.show("Oops!  That was no valid number.  Try again...")
 		return {"BMI" : input_data}
+
 	def input_salary(self):
 		while True:
 			 try:
@@ -104,3 +108,15 @@ class Controller(object):
 			 except ValueError:
 			     self.__view.show("Oops!  That was no valid number.  Try again...")
 		return {"Salary" : input_data}
+
+	def input_birthday(self):
+		while True:
+			 try:
+			     input_data = self.__view.input("Please input the birthday day-month-year : ")
+			     if self.validator.is_valid_birthday(input_data):
+			     	break
+			     else:
+			     	self.__view.show("That was no valid input.  Try again...")
+			 except ValueError:
+			     self.__view.show("Oops!  That was no valid number.  Try again...")
+		return {"Birthday" : input_data}
