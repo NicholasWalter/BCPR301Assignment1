@@ -14,7 +14,7 @@ class DataHandlerAbstract(metaclass=abc.ABCMeta):
     """
 
     def __init__(self):
-        super.__init__(self)
+        super().__init__()
         print("DataHandlerAbstract constructor")
         pass
 

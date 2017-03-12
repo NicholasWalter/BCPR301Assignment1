@@ -67,7 +67,7 @@ def convert_birthday(birthday):
     if not inputValidator.validate_input_birthday(birthday):
         raise ValueError("Input for birthday invalid: {}".format(birthday))
     split = birthday.split("-")
-    year = int(split[0])
+    day = int(split[0])
     month = int(split[1])
-    day = int(split[2])
+    year = int(split[2])
     return datetime.date(year, month, day)

@@ -1,2 +1,11 @@
-empid,gender,sales,bmi,salary,birthday
+empid,gender,sales,bmi,salary,birthday,age
 A123,m,999,normal,77,1995-10-14,21
+B234,m,888,overweight,66,1998-08-28,18
+A234,m,2,normal,77,1995-10-14,21
+A234,m,2,normal,77,1995-10-14,21
+A234,m,2,normal,77,1995-10-14,21
+A234,m,2,normal,77,1995-10-14,21
+A234,m,2,normal,77,1995-10-14,21
+A234,m,2,normal,77,1995-10-14,21
+A234,m,2,normal,77,1995-10-14,21
+A234,m,2,normal,77,1995-10-14,21

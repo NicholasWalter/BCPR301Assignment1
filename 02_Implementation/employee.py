@@ -10,7 +10,13 @@ class Person:
 
     def __str__(self):
         gender_string = {"m": "Male", "f": "Female"}[self.gender.lower()]
-        return "{} Person with bmi {}; {} years old".format(gender_string, self.bmi, self.age)
+        return "{} person, born {} ({}); bmi: {}".format(gender_string,
+                            self.get_birthday_string(),
+                            self.age, self.bmi)
+
+    def get_birthday_string(self):
+        bday = self.birthday
+        return "{}-{}-{}".format(bday.year, bday.month, bday.day)
 
 
 class Employee(Person):
@@ -33,7 +39,10 @@ class Employee(Person):
         self.salary = salary
 
     def __str__(self):
-        return Person.__str__(self) + "; Employee with id {}".format(self.employee_id)
+        return "ID {}: Sales: {} Salary: {}".format(self.employee_id,
+                                                    self.sales,
+                                                    self.salary) \
+                                                    + Person.__str__(self)
 
     def equals(self, other):
         """
@@ -43,13 +52,20 @@ class Employee(Person):
             other: another Employee object
         """
         # using and instead of && to make use of short circuiting
-        return self.employee_id == other.employee_id and 
-                self.gender == other.gender and
-                self.sales == other.sales and
-                self.bmi == other.bmi and
-                self.salary == other.salary and
-                self.birthday == other.birthday and
+        return self.employee_id == other.employee_id and \
+                self.gender == other.gender and \
+                self.sales == other.sales and \
+                self.bmi == other.bmi and \
+                self.salary == other.salary and \
+                self.birthday == other.birthday and \
                 self.age == other.age
+
+    def get_csv_line(self):
+        return "{},{},{},{},{},{},{}\n".format(self.employee_id, self.gender,
+                                                self.sales, self.bmi,
+                                                self.salary,
+                                                self._get_birthday_string(),
+                                                self.age)
 
 def create_employee(attributes):
     """
@@ -73,13 +89,3 @@ def create_employee(attributes):
                     attributes["sales"], attributes["bmi"],
                     attributes["salary"], attributes["birthday"],
                     attributes["age"])
-
-
-# testing functionality
-def test():
-    bd = datetime.datetime(1995, 10, 14)
-    a = Employee("empID", "m", 999, "normal", 77, bd, 21)
-    print(a)
-
-if __name__ == "__main__":
-    test()
