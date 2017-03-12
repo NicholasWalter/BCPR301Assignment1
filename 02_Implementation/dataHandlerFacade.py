@@ -10,39 +10,50 @@ though redundant, this is okay in the context of the assignment.
 import dataHandlerFile as file
 import dataHandlerDatabase as db
 
+sources = {"db": db.DataHandlerDatabase(),
+            "csv": file.DataHandlerFile()}
+
 def get_all_employees(source = None):
     """
     reads all employees and returns them in a list
-        @params: -
+        @params:
+            source: String describing datasource ("db" or "csv")
         @return:
             list of employee objects, may be empty
     """
-    file_employees = file.DataHandlerFile().get_all_employees()
-    db_employees = db.DataHandlerDatabase().get_all_employees()
-    
-    if source == "db":
-        return db_employees
-    elif source == "csv":
-        return file_employees
+    return sources[source].get_all_employees()
 
-    # join the two lists
-    # cannot use .extend() because the objects, while equal, are not identical
-    for emp in file_employees:
-        contained = False
-        for emp2 in db_employees:
-            if emp.equals(emp2):
-                contained = True
-                break
-        if not contained:
-            db_employees.append(emp)
-    return db_employees
+def employee_exists(emp_id, source):
+    """
+    checks whether an employee with the supplied id exists in the supplied
+    datasource
+    @params:
+        emp_id: the four digit employee id to check
+        source: String describing datasource ("db" or "csv")
+    @return:
+        True if an employee with the id exists, otherwise False 
+    """
+    return sources[source].employee_exists(emp_id)
 
-def employee_exists(employee):
-    return True in [file.employee_exists(employee), db.employee_exists(employee)]
+def save_employees(employees, source):
+    """
+    saves the supplied employees to the supplied datasource
+    @params:
+        employees: list of Employee objects to save
+        source: String describing datasource ("db" or "csv")
+    @return: -
+    """
+    sources[source].save_employees(employees)
 
-def save_employees(employees):
-    file.save_employees(employees)
-    db.save_employees(employees)
+def save_employee(employee, source):
+    """
+    saves the supplied employee to the supplied datasource
+    @params:
+        employee: the Employee object to save
+        source: String describing datasource ("db" or "csv")
+    @return: -
+    """
+    save_employees([employee], source)
 
 def get_statistic(statistic, group):
     raise NotImplementedError
@@ -54,6 +65,7 @@ def sync_datasources():
     @params: -
     @return: -
     """
+    raise NotImplementedError
     file_employees = file.get_all_employees()
     db_employees = db.get_all_employees()
 

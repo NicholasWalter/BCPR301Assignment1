@@ -5,6 +5,15 @@ will return True if the input is valid, otherwise False
 
 import datetime
 
+def validate_input(input, input_type):
+    validators = {"empid": validate_input_employee_id,
+                    "gender": validate_input_gender,
+                    "age": validate_input_age,
+                    "bmi": validate_input_bmi,
+                    "sales": validate_input_sales,
+                    "salary": validate_input_salary,
+                    "birthday": validate_input_birthday}
+    return validators[input_type](input)
 
 def validate_input_employee_id(employee_id_input):
     """
@@ -99,7 +108,7 @@ def validate_input_birthday(birthday_input):
     year = split[2]
     try:                                                # should all be integers
         day_int = int(day)
-        month_int = int(day)
+        month_int = int(month)
         year_int = int(year)
     except:
         return False
@@ -127,16 +136,12 @@ def _valid_input_integer(integer_input, digits):
         integer_input: String to check
         digits: the number of digits the input may have
     """
-    print("##input_ .{}. .{}.".format(integer_input, digits))
     if len(integer_input) != digits:
-        print("####wrong length")
         return False
     try:
         a = int(integer_input)
     except:
-        print("####not int")
         return False
-    print("####okay")
     return True
 
 ################################################################################
