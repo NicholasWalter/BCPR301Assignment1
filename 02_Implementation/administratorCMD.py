@@ -155,6 +155,12 @@ class administratorCMD(Cmd):
         """
         raise NotImplementedError
 
+    def do_serialize_employees(self, line):
+        raise NotImplementedError
+
+    def do_deserialize_employees(self, line):
+        raise NotImplementedError
+
     def do_update_employee(self, line):
         """
         Syntax: update_employee [employee id]
@@ -211,11 +217,15 @@ class administratorCMD(Cmd):
         print(result)
         GUI.display_statistic(result, split[0], split[1])
 
-    def stdOut(self, message):
-        print(message)
+def stdOut(message):
+    print(message)
 
-    def stdErr(self, message):
-        print("Error: " + message)
+def stdErr(message):
+    print(message)
+
+def start():
+    a = administratorCMD()
+    a.cmdloop()
 
 if __name__ == "__main__":
     a = administratorCMD()

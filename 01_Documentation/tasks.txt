@@ -18,5 +18,7 @@
 Todo:
 - implement dataHandlerSerial.py
 - implement administratorCMD.do_read_csv_file
+- implement administratorCMD.do_serialize_employees
+- implement administratorCMD.do_deserialize_employees
 - implement administratorCMD.do_update_employee
 - implement administratorCMD.do_delete_employees

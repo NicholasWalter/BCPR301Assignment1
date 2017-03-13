@@ -9,6 +9,7 @@ though redundant, this is okay in the context of the assignment.
 # project imports
 import dataHandlerFile as file
 import dataHandlerDatabase as db
+import dataHandlerSerial as ser
 
 sources = {"db": db.DataHandlerDatabase(),
             "csv": file.DataHandlerFile()}

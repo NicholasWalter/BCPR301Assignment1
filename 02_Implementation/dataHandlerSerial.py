@@ -4,11 +4,13 @@ to memory.
 """
 
 # python imports
+from glob import glob
 import os
 import pickle
 
 # project imports
 from dataHandlerAbstract import DataHandlerAbstract
+import IOHelper as IO
 
 class DataHandlerSerial(DataHandlerAbstract):
     def __init__(self, save_path = "XXX"):
@@ -20,10 +22,27 @@ class DataHandlerSerial(DataHandlerAbstract):
         self._save_path = save_path
 
     def get_all_employees(self):
-        raise NotImplementedError
+        os.chdir(self._save_path)
+        all_files = glob("*.emp")
+        employees = []
+
+        for f in all_files:
+            try:
+                employees.append(pickle.load(open(f, "rb")))
+            except:
+                err_text = "Error reading file: {}"
+                IO.stdErr(err_text.format(f))
+        return employees
 
     def save_employees(self, employees):
-        raise NotImplementedError
+        for emp in employees:
+            try:
+                file_name = "{}.emp".format(emp.employee_id)
+                file_path = os.path.join(self._save_path, file_name)
+                pickle.dump(emp, open(file_path, "wb"))
+            except:
+                err_text = "Could not serialise {}"
+                IO.stdErr(err_text.format(emp.employee_id))
 
     def update_employee(self, employee):
         raise NotImplementedError

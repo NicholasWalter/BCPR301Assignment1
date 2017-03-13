@@ -13,6 +13,7 @@ import config
 from dataHandlerAbstract import DataHandlerAbstract
 import employee
 import inputConverter as IC
+import IOHelper as IO
 
 
 class DataHandlerFile(DataHandlerAbstract):
@@ -45,7 +46,7 @@ class DataHandlerFile(DataHandlerAbstract):
         @return: list of Employee objects, may be empty
         """
         employees = []
-
+        errors = []
         # using file as a resource so I dont forget to close it
         with open(self._file) as source:
             skipped_first = False
@@ -53,24 +54,28 @@ class DataHandlerFile(DataHandlerAbstract):
                 if not skipped_first:
                     skipped_first = True
                     continue
-                split = line.split(",")
-                # TODO: HIGH: validate data
-                emp_id = split[0]
-                gender = split[1]
-                sales = int(split[2])
-                bmi = split[3]
-                salary = int(split[4])
-                split2 = split[5].split("-")
-                year = int(split2[0])
-                month = int(split2[1])
-                day = int(split2[2])
-                bday = datetime.date(year, month, day)
-                age = int(split[6])
-                attributes = {"empid": emp_id, "gender": gender, "sales": sales,
-                                "bmi": bmi, "salary": salary, "birthday": bday,
-                                "age": age}
-                # TODO: high: catch ValueError from employee creation
-                employees.append(employee.create_employee(attributes))
+                try:
+                    split = line.split(",")
+                    # TODO: HIGH: validate data
+                    emp_id = split[0]
+                    gender = split[1]
+                    sales = int(split[2])
+                    bmi = split[3]
+                    salary = int(split[4])
+                    split2 = split[5].split("-")
+                    year = int(split2[0])
+                    month = int(split2[1])
+                    day = int(split2[2])
+                    bday = datetime.date(year, month, day)
+                    age = int(split[6])
+                    attributes = {"empid": emp_id, "gender": gender, "sales": sales,
+                                    "bmi": bmi, "salary": salary, "birthday": bday,
+                                    "age": age}
+                    # TODO: high: catch ValueError from employee creation
+                    employees.append(employee.create_employee(attributes))
+                except:
+                    errors.append("Error when reading line: {}".format(line))
+        [IO.stdErr(e) for e in errors]
         return employees
 
     def save_employees(self, employees):
