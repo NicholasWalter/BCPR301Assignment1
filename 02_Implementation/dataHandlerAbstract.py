@@ -18,24 +18,53 @@ class DataHandlerAbstract(metaclass=abc.ABCMeta):
         print("DataHandlerAbstract constructor")
         pass
 
-    def get_statistic(statistic, group):
+    def get_statistic(self, statistic, group):
         """
-        creates a statistic from the saved data. e.g. calling with "salaray" and
+        creates a statistic from the saved data. e.g. calling with "salary" and
         "gender" will return a comparison of salaries for male and female
         employees
-        @params:
-            statistic: the statistic to examine
-            group: the attribute to group results by
-        @return:
-            dictionary with groups (e.g. "m" and "f") as keys and the average
-            value for statistic as value. {"m": 888, "f":999}
-        """
-        raise NotImplementedError
 
-        all_employees = self.get_all_employees()
+        this assumes that both statistic and group have been checked for
+        validity
+        @params:
+            statistic:
+                the statistic to examine
+            group:
+                the attribute to group results by
+        @return:
+            list containing two items:
+                boolean indicating the type of result: True for result type a
+                    ({group: [total, average]}), False for result type b
+                    ({group: [count]})
+                dictionary with groups (e.g. "m" and "f") as keys and the
+                average value for statistic as value. {"m": 888, "f":999}
+        """
 
         # TODO: LOW: redo with list comprehensions
+        # TODO: HIGH: enable string stuff (e.g. bmi as statistic)
 
+        return self._get_statistic_default(statistic, group)
+
+    def _get_statistic_string(self, statistic, group):
+        all_employees = self.get_all_employees()
+
+        result = {}
+        for emp in all_employees:
+            this_group = getattr(emp, group)
+            this_value = getattr(emp, statistic)
+            if not this_group in result:
+                result[this_group] = 0
+            result[this_group] +=1
+
+        return result
+
+
+        raise NotImplementedError
+
+    def _get_statistic_default(self, statistic, group):
+        all_employees = self.get_all_employees()
+
+        # collect total value and count
         step1 = {}
         for emp in all_employees:
             this_group = getattr(emp, group)
@@ -46,10 +75,11 @@ class DataHandlerAbstract(metaclass=abc.ABCMeta):
             new_value = [previous_value[0] + this_value, previous_value[1] + 1]
             step1[this_group] = new_value
 
+        # calculate averages
         step2 = {}
         for group in step1:
             record = step1[group]
-            step2[group] = record[0] / record[1]
+            step2[group] = [record[0] / record[1], record[0]]
 
         return step2
 

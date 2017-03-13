@@ -12,6 +12,7 @@ from cmd import Cmd
 import sys
 
 # project imports
+import administratorGUI as GUI
 import dataHandlerFacade as dataHandler
 import employee
 import inputConverter as IC
@@ -142,7 +143,8 @@ class administratorCMD(Cmd):
         """
         Syntax: read_file [path] [target]
         Reads the supplied csv file and saves all contained Employees to the
-            supplied target
+        supplied target. If an employee already exists in the target, it will
+        be updated
         parameters:
             path:
                 full path to the file to read
@@ -178,6 +180,36 @@ class administratorCMD(Cmd):
             list of employees that were deleted
         """
         raise NotImplementedError
+
+    def do_get_statistic(self, line):
+        """
+        Syntax: get_statistic [parameter] [group]
+        Displays the selected parameter grouped by the selected group.
+        e.g. "get_statistic salary gender" will display the total and average
+        salary for male and female employees.
+        parameters:
+            parameter:
+                the parameter to examine (may be "sales", "salary", "age")
+            group:
+                the parameter to group results by (me be "gender", "sales",
+                "bmi", "salary", "birthday", "age")
+        output:
+            a window showing the statistic
+        """
+        if len(line.split(" ")) != 2:
+            print("invalid parameters.")
+            self.do_help("get_statistic")
+            return False
+        valid_parameters = ["sales", "salary", "age"]
+        valid = ["gender", "sales", "bmi", "salary", "birthday", "age"]
+        split = line.split(" ")
+        if split[0] not in valid_parameters or split[1] not in valid:
+            print("invalid parameters.")
+            self.do_help("get_statistic")
+            return False
+        result = dataHandler.get_statistic(split[0], split[1], self._datasource)
+        print(result)
+        GUI.display_statistic(result, split[0], split[1])
 
     def stdOut(self, message):
         print(message)

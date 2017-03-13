@@ -55,8 +55,8 @@ def save_employee(employee, source):
     """
     save_employees([employee], source)
 
-def get_statistic(statistic, group):
-    raise NotImplementedError
+def get_statistic(statistic, group, source):
+    return sources[source].get_statistic(statistic, group)
 
 def sync_datasources():
     """
