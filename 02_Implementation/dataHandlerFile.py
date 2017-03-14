@@ -9,7 +9,6 @@ import datetime
 import os
 
 # project imports
-import config
 from dataHandlerAbstract import DataHandlerAbstract
 import employee
 import inputConverter as IC
@@ -26,6 +25,8 @@ class DataHandlerFile(DataHandlerAbstract):
             file = "01_datasources/employees.csv"
             path = os.path.dirname(os.path.realpath(__file__))
             file_path = os.path.join(path, file)
+        else:
+            file_path = os.path.abspath(file_path)
         self._file = file_path
         if not self._test_file():
             e = "File at {} could not be found."

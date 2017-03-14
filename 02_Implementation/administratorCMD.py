@@ -307,17 +307,6 @@ class administratorCMD(Cmd):
                     print('invalid parameter: "{}", skipping'.format(item))
         Cmd.cmdloop(self)
 
-        """
-        split = line.rstrip().lstrip().split(" ")
-        print(split)
-        for item in split:
-            if item.endswith(".csv"):
-                self.do_read_csv_file(item + " csv")
-            else:
-                print("invalid parameter: \"{}\" skipping...".format(item))
-        Cmd.cmdloop(self)
-        """
-
 def stdOut(message):
     print(message)
 
