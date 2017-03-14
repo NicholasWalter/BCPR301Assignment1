@@ -17,8 +17,7 @@ def start():
     if not len(sys.argv) == 1:
         for i in range(1, len(sys.argv)):
             line += sys.argv[i] + " "
-    CMD.start(line)
+    CMD.start(sys.argv[1:])
 
 if __name__ == "__main__":
-    print(sys.argv)
     start()

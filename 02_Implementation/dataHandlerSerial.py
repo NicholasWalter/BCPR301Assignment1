@@ -58,12 +58,12 @@ class DataHandlerSerial(DataHandlerAbstract):
             return
         self.save_employees([employee])
 
-    def delete_employees(self, employees):
+    def delete_employees(self, employee_ids):
         os.chdir(self._save_path)
-        for emp in employees:
+        for id in employee_ids:
             try:
-                os.remove("{}.emp".format(emp.employee_id))
+                os.remove("{}.emp".format(id))
             except:
-                IO.stdErr("Could not delete employee {}".format(emp.employee_id))
+                IO.stdErr("Could not delete employee {}".format(id))
 
 a = DataHandlerSerial()

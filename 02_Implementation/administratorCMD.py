@@ -9,11 +9,13 @@ Furthermore nothing in here is safe to be used by multiple users simultaneously.
 
 # python imports
 from cmd import Cmd
+import os
 import sys
 
 # project imports
 import administratorGUI as GUI
 import dataHandlerFacade as dataHandler
+import dataHandlerFile
 import employee
 import inputConverter as IC
 import inputValidator as IV
@@ -150,11 +152,39 @@ class administratorCMD(Cmd):
             path:
                 full path to the file to read
             target:
-                use "db" to save in database, "csv" to save in csv file
+                use "db" to save in database, "csv" to save in csv file,
+                "ser" to serialize and save the employees
         output:
             A description for any error in the reading/ saving process
         """
-        raise NotImplementedError
+        split = line.split(" ")
+        # check input
+        if not len(split) == 2:
+            print("invalid parameters: " + line)
+            self.do_help("read_csv_file")
+            return False
+        if not split[1] in ["db", "csv", "ser"]:
+            print("invalid target parameter. use \"db\", \"csv\" or \"ser\"")
+            return False
+        try:
+            handler = dataHandlerFile.DataHandlerFile(split[0])
+        except FileNotFoundError:
+            print("could not find file \"{}\", skipping.".format(line))
+            return False
+
+        # read employees from source file
+        all_employees = handler.get_all_employees()
+        to_save = []
+
+        # update employees in target if they already exist
+        for emp in all_employees:
+            if dataHandler.employee_exists(emp.employee_id, split[1]):
+                dataHandler.update_employee(emp, split[1])
+            else:
+                to_save.append(emp)
+
+        # save employees that do not yet exist in target
+        dataHandler.save_employees(to_save, split[1])
 
     def do_update_employee(self, line):
         """
@@ -210,7 +240,14 @@ class administratorCMD(Cmd):
         output:
             list of employees that were deleted
         """
-        raise NotImplementedError
+        split = line.split(" ")
+        if len(split) < 1:
+            self.do_help("delete_employees")
+            return False
+        checked = [i for i in split if IV.validate_input(i, "empid")]
+        [print("Invalid employee id: {}".format(a)) for a in split \
+        if not a in checked]
+        dataHandler.delete_employees(checked, self._datasource)
 
     def do_get_info(self, line):
         """
@@ -260,10 +297,26 @@ class administratorCMD(Cmd):
         result = dataHandler.get_statistic(split[0], split[1], self._datasource)
         GUI.display_statistic(result, split[0], split[1])
 
-    def cmdloop(self, line):
+    def cmdloop(self, args):
         # TODO: high: read params from line & import employees
-        print("my cmd loop: " + line)
+        if len(args) > 0:
+            for item in args:
+                if item.endswith(".csv"):
+                    self.do_read_csv_file(item + " csv")
+                else:
+                    print('invalid parameter: "{}", skipping'.format(item))
         Cmd.cmdloop(self)
+
+        """
+        split = line.rstrip().lstrip().split(" ")
+        print(split)
+        for item in split:
+            if item.endswith(".csv"):
+                self.do_read_csv_file(item + " csv")
+            else:
+                print("invalid parameter: \"{}\" skipping...".format(item))
+        Cmd.cmdloop(self)
+        """
 
 def stdOut(message):
     print(message)
@@ -273,10 +326,10 @@ def stdErr(message):
 
 instance = None
 
-def start(line):
+def start(args):
     global instance
     instance = administratorCMD()
-    instance.cmdloop(line)
+    instance.cmdloop(args)
 
 if __name__ == "__main__":
     a = administratorCMD()

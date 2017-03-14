@@ -63,6 +63,9 @@ def save_employee(employee, source):
 def update_employee(employee, source):
     sources[source].update_employee(employee)
 
+def delete_employees(employee_ids, source):
+    sources[source].delete_employees(employee_ids)
+
 def get_statistic(statistic, group, source):
     return sources[source].get_statistic(statistic, group)
 

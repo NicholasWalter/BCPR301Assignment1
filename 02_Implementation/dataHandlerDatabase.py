@@ -12,6 +12,7 @@ import pymysql
 # project imports
 from dataHandlerAbstract import DataHandlerAbstract
 import employee
+import IOHelper as IO
 
 class DataHandlerDatabase(DataHandlerAbstract):
     
@@ -78,15 +79,16 @@ class DataHandlerDatabase(DataHandlerAbstract):
         # TODO: Error handling
         
 
-    def delete_employees(self, employees):
+    def delete_employees(self, employee_ids):
         raise NotImplementedError
         c = 'DELETE FROM employees WHERE id = {}'
-        for emp in employees:
-            command = c.format(emp.employee_id)
+        for id in employee_ids:
+            command = c.format(id)
             result = self._execute_command(command)
             if result[0].startswith("Query OK"):
                 continue
-            # TODO: Error handling
+            else:
+                IO.stdErr("Error deleting employee {} from database".format(id))
 
     def _execute_command(self, command):
         """

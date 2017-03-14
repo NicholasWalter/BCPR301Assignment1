@@ -1,6 +1,0 @@
-$ use "$" to mark lines as comment
-$
-$ use first non-comment non-empty line to define delimiter for configurations
-%
-$ define textfile containing datasources
-datasource%datasources.csv

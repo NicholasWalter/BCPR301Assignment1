@@ -120,15 +120,14 @@ class DataHandlerFile(DataHandlerAbstract):
         if not updated:
             IO.stdErr("Could not find the supplied employee to update")
 
-    def delete_employees(self, employees):
-        ids = [emp.employee_id for emp in employees]
+    def delete_employees(self, employee_ids):
         lines = []
         with open(self._file) as source:
             for line in source:
                 split = line.split(",")
-                if split[0] in ids:
+                if split[0] in employee_ids:
                     continue
-                line.append(line)
+                lines.append(line)
 
         with open(self._file, "w") as target:
             for line in lines:
