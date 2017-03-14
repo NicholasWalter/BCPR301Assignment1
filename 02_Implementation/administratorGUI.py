@@ -27,11 +27,6 @@ def display_statistic(statistic, parameter, group):
     values = [statistic[a][1] for a in groups]
     ls = "{} total: {} average: {}"                 # raw label string
     labels = [ls.format(k, statistic[k][1], statistic[k][0]) for k in groups]
-    [print(l, type(l)) for l in labels]
-    print("groups:")
-    print(groups)
-    print("values:")
-    print(values)
 
     pie(values, labels=labels, shadow=True, autopct="%1.2f%%", startangle=90)
 

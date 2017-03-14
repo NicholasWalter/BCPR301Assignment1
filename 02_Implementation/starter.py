@@ -13,7 +13,12 @@ import IOHelper as IO
 
 def start():
     IO.initialize(CMD)
-    CMD.start()
+    line = ""
+    if not len(sys.argv) == 1:
+        for i in range(1, len(sys.argv)):
+            line += sys.argv[i] + " "
+    CMD.start(line)
 
 if __name__ == "__main__":
+    print(sys.argv)
     start()

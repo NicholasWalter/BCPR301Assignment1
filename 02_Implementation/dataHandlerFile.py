@@ -103,17 +103,22 @@ class DataHandlerFile(DataHandlerAbstract):
         @return: -
         """
         lines = []
+        updated = False
         with open(self._file) as source:
             for line in source:
                 split = line.split(",")
                 if split[0] == employee.employee_id:
                     lines.append(employee.get_csv_line())
+                    updated = True
                     continue
                 lines.append(line)
 
         with open(self._file, "w") as target:
             for line in lines:
                 target.write(line)
+
+        if not updated:
+            IO.stdErr("Could not find the supplied employee to update")
 
     def delete_employees(self, employees):
         ids = [emp.employee_id for emp in employees]

@@ -65,8 +65,9 @@ class administratorCMD(Cmd):
         if len(line) == 0:
             print("Current datasource: " + self._datasource)
             return False
-        if not line in ["csv", "db"]:
-            self.do_help("list")    
+        if not line in ["csv", "db", "ser"]:
+            self.do_help("list")
+            return False    
         self._datasource = line
 
     def do_list(self, line):
@@ -155,12 +156,6 @@ class administratorCMD(Cmd):
         """
         raise NotImplementedError
 
-    def do_serialize_employees(self, line):
-        raise NotImplementedError
-
-    def do_deserialize_employees(self, line):
-        raise NotImplementedError
-
     def do_update_employee(self, line):
         """
         Syntax: update_employee [employee id]
@@ -172,7 +167,37 @@ class administratorCMD(Cmd):
             after the process is finished, all old and new information about the
             employee is displayed
         """
-        raise NotImplementedError
+        if not IV.validate_input_employee_id(line):
+            print("invalid employee id.")
+            self.do_help("update employee")
+            return False
+        to_change = dataHandler.get_employee(line, self._datasource)
+        print("The employee to change:")
+        print(to_change)
+        print("If you want to change an attribute, please enter the new value")
+        print("To leave an attribute unchanged, leave prompt empty")
+        attributes = ["gender", "sales", "bmi", "salary", "birthday", "age"]
+
+        prompt = "Attribute: {} Current: {} Enter new value:\n"
+        for a in attributes:
+            uin = "XXXXX"
+            skip = False
+            while not IV.validate_input(uin, a):
+                if len(uin) == 0:
+                    skip = True
+                    break
+                uin = input(prompt.format(a, getattr(to_change, a)))
+            if not skip:
+                setattr(to_change, a, uin)
+
+        print("Updated employee:")
+        print(to_change)
+        uin = "X"
+        while not uin.lower() in ["y", "n"]:
+            uin = input("Do you want to accept these changes (y/n)")
+        if uin == "y":
+            dataHandler.update_employee(to_change, self._datasource)
+
 
     def do_delete_employees(self, line):
         """
@@ -186,6 +211,25 @@ class administratorCMD(Cmd):
             list of employees that were deleted
         """
         raise NotImplementedError
+
+    def do_get_info(self, line):
+        """
+        Syntax: get_info
+        Displays information about the system and the available default data
+        sources
+        """
+        datasources = {"db": "Database", "csv": "CSV File",
+                        "ser": "Serialization"}
+        for ds in datasources.keys():
+            descr = datasources[ds]
+            try:
+                print("Information about {}:".format(descr))
+                all_employees = dataHandler.get_all_employees(ds)
+                count = len(all_employees)
+                print("{} employees saved in this data source".format(count))
+                print()
+            except:
+                print("Error when fetching information about {}".format(descr))
 
     def do_get_statistic(self, line):
         """
@@ -214,8 +258,12 @@ class administratorCMD(Cmd):
             self.do_help("get_statistic")
             return False
         result = dataHandler.get_statistic(split[0], split[1], self._datasource)
-        print(result)
         GUI.display_statistic(result, split[0], split[1])
+
+    def cmdloop(self, line):
+        # TODO: high: read params from line & import employees
+        print("my cmd loop: " + line)
+        Cmd.cmdloop(self)
 
 def stdOut(message):
     print(message)
@@ -223,9 +271,12 @@ def stdOut(message):
 def stdErr(message):
     print(message)
 
-def start():
-    a = administratorCMD()
-    a.cmdloop()
+instance = None
+
+def start(line):
+    global instance
+    instance = administratorCMD()
+    instance.cmdloop(line)
 
 if __name__ == "__main__":
     a = administratorCMD()

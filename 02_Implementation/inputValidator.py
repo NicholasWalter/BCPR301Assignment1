@@ -56,7 +56,7 @@ def validate_input_age(age_input):
     @return:
         True if the input is valid, otherwise False
     """
-    return _valid_input_integer(age_input, 2)
+    return True in [_valid_input_integer(sales_input, i) for i in range(1, 3)]
 
 def validate_input_bmi(bmi_input):
     """
@@ -68,7 +68,8 @@ def validate_input_bmi(bmi_input):
     @return:
         True if the input is valid, otherwise False
     """
-    return bmi_input.lower() in ["normal", "overweight", "obesity", "underweight"]
+    return bmi_input.lower() in ["normal", "overweight", "obesity",
+                                    "underweight"]
 
 def validate_input_sales(sales_input):
     """
@@ -79,7 +80,7 @@ def validate_input_sales(sales_input):
     @return:
         True if the input is valid, otherwise False
     """
-    return _valid_input_integer(sales_input, 3)
+    return True in [_valid_input_integer(sales_input, i) for i in range(1, 4)]
 
 def validate_input_salary(salary_input):
     """
@@ -90,8 +91,7 @@ def validate_input_salary(salary_input):
     @return:
         True if the input is valid, otherwise False
     """
-    return True in [_valid_input_integer(salary_input, 2),
-                    _valid_input_integer(salary_input, 3)]
+    return True in [_valid_input_integer(sales_input, i) for i in range(1, 4)]
 
 def validate_input_birthday(birthday_input):
     """

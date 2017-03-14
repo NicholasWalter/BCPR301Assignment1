@@ -15,7 +15,6 @@ class DataHandlerAbstract(metaclass=abc.ABCMeta):
 
     def __init__(self):
         super().__init__()
-        print("DataHandlerAbstract constructor")
         pass
 
     def get_statistic(self, statistic, group):

@@ -12,9 +12,10 @@ import dataHandlerDatabase as db
 import dataHandlerSerial as ser
 
 sources = {"db": db.DataHandlerDatabase(),
-            "csv": file.DataHandlerFile()}
+            "csv": file.DataHandlerFile(),
+            "ser": ser.DataHandlerSerial()}
 
-def get_all_employees(source = None):
+def get_all_employees(source):
     """
     reads all employees and returns them in a list
         @params:
@@ -23,6 +24,9 @@ def get_all_employees(source = None):
             list of employee objects, may be empty
     """
     return sources[source].get_all_employees()
+
+def get_employee(emp_id, source):
+    return sources[source].get_employee(emp_id)
 
 def employee_exists(emp_id, source):
     """
@@ -55,6 +59,9 @@ def save_employee(employee, source):
     @return: -
     """
     save_employees([employee], source)
+
+def update_employee(employee, source):
+    sources[source].update_employee(employee)
 
 def get_statistic(statistic, group, source):
     return sources[source].get_statistic(statistic, group)
