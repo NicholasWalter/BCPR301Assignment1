@@ -1,210 +1,557 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>10</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>620</x>
-      <y>160</y>
-      <w>210</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>AdministratorGUI
---
---
-display(Employee[])</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>860</x>
-      <y>160</y>
-      <w>210</w>
-      <h>70</h>
+      <x>728</x>
+      <y>245</y>
+      <w>182</w>
+      <h>210</h>
     </coordinates>
     <panel_attributes>AdministratorCMD
+File: administratorCMD.py
 --
+_print_welcome()
+do_exit(line::string)
+do_datasource(line::string)
+do_list(line::string)
+do_add_employee(line::string)
+do_read_csv_file(line::string)
+do_update_employee(line::string)
+do_delete_employee(line::string)
+do_get_info(line::string)
+do_get_statistic(line::string)
+cmdloop(args::string[])
 --
-display(Employee[])</panel_attributes>
+offers command line interface to
+user to access all implemented
+features of the program</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>620</x>
-      <y>360</y>
-      <w>210</w>
-      <h>170</h>
+      <x>728</x>
+      <y>0</y>
+      <w>182</w>
+      <h>91</h>
     </coordinates>
-    <panel_attributes>Employee
+    <panel_attributes>&lt;&lt;AdministratorAbstract&gt;&gt;
+File: administratorAbstract.py
 --
-String: emp_id
-String: gender
-int: age
-int: sales
-String: body_mass_index
-int: salary
-datetime: birthday
---</panel_attributes>
+/stdErr(string)/
+/stdOut(string)/
+--
+defines interfact to be implemented
+by all Administrator classes</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>710</x>
-      <y>220</y>
-      <w>280</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>260.0;10.0;260.0;50.0;10.0;50.0;10.0;140.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>710</x>
-      <y>220</y>
-      <w>30</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;140.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>310</x>
-      <y>160</y>
-      <w>210</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>DataHandlerFacade
---
---
-boolean: save(Employee[])
-Employee[]: read()
-Employee[]: find(Employee)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>400</x>
-      <y>120</y>
-      <w>340</w>
-      <h>60</h>
+      <x>812</x>
+      <y>84</y>
+      <w>21</w>
+      <h>175</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0;320.0;10.0;320.0;40.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>400</x>
-      <y>120</y>
-      <w>630</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;40.0;10.0;10.0;610.0;10.0;610.0;40.0</additional_attributes>
+    <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>310</x>
-      <y>360</y>
-      <w>210</w>
-      <h>140</h>
+      <x>924</x>
+      <y>70</y>
+      <w>84</w>
+      <h>21</h>
     </coordinates>
-    <panel_attributes>DataHandlerDatabase
+    <panel_attributes>cmd.CMD
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>812</x>
+      <y>84</y>
+      <w>161</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
+    <additional_attributes>210.0;10.0;210.0;40.0;10.0;40.0;10.0;230.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>392</x>
+      <y>245</y>
+      <w>196</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>starter.py
 --
+start()
 --
-boolean: save(Employee[])
-Employee[]: read()
-Employee[]: find(Employee)</panel_attributes>
+entry point to the project;
+reads system arguments
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>581</x>
+      <y>259</y>
+      <w>161</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..
+starts
+administrator.start()</panel_attributes>
+    <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>392</x>
+      <y>91</y>
+      <w>196</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>IOHelper.py
+--
+initialize(target::AdministratorAbstract)
+stdErr(message::string)
+stdOut(message::string)
+--
+entry point to the project;
+reads system arguments
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>469</x>
+      <y>182</y>
+      <w>63</w>
+      <h>77</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..
+initializes</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;90.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>581</x>
+      <y>84</y>
+      <w>175</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+stores
+forwards messages</panel_attributes>
+    <additional_attributes>10.0;40.0;230.0;40.0;230.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1050</x>
+      <y>245</y>
+      <w>294</w>
+      <h>147</h>
+    </coordinates>
+    <panel_attributes>dataHandlerFacade.py
+--
+get_all_employees(source::string)
+get_employee(emp_id::string, source::string)
+employee_exists(emp_id::string, source::string)
+save_employees(employees::Employee[], source::string)
+save_employee(employee::Employee, source::string)
+update_employee(employee::Employee, source::string)
+delete_employees(employee_ids::string[], source::string)
+get_statistic(statistic::string, group::string, source::string)
+--
+acts as a facade to several implementations of
+DataHandlerAbstract interface</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>903</x>
+      <y>259</y>
+      <w>161</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..
+uses for data IO</panel_attributes>
+    <additional_attributes>210.0;20.0;10.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1050</x>
+      <y>427</y>
+      <w>294</w>
+      <h>175</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;DataHandlerAbstract&gt;&gt;
+File: dataHandlerAbstract.py
+--
+/get_all_employees():Employee[]/
+/save_employees(employees::Employee[])/
+/update_employee(employee::Employee)/
+/delete_employees(emp_ids::string[])/
+get_statistic(statistic::string, group::string):{}
+_get_statistic_default(statistic::string, group::string):{}
+save_employee(employee::Employee)
+get_employe(emp_id::string):Employee
+employee_exists(emp_id::string):boolean
+delete_employee(employee:Employee)
+--
+defines interface to be implemented by all DataHandler
+classes</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>60</x>
-      <y>360</y>
-      <w>210</w>
-      <h>140</h>
+      <x>938</x>
+      <y>371</y>
+      <w>84</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>abc.ABCMeta
+bg=gray</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>966</x>
+      <y>385</y>
+      <w>140</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;.
+metaclass</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;40.0;180.0;40.0;180.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1085</x>
+      <y>637</y>
+      <w>294</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>DataHandlerFile
+File: dataHandlerFile.py
 --
+get_all_employees():Employee[]
+save_employees(employees::Employee[])
+update_employee(employee::Employee)
+delete_employees(emp_ids::string[])
 --
-boolean: save(Employee[])
-Employee[]: read()
-Employee[]: find(Employee)</panel_attributes>
+IO to save/ read employees to/ from .csv files</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>150</x>
-      <y>290</y>
-      <w>280</w>
-      <h>90</h>
+      <x>1057</x>
+      <y>595</y>
+      <w>42</w>
+      <h>140</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>260.0;10.0;260.0;40.0;10.0;40.0;10.0;70.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;180.0;40.0;180.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1085</x>
+      <y>749</y>
+      <w>294</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>DataHandlerDatabase
+File: dataHandlerDatbase.py
+--
+get_all_employees():Employee[]
+save_employees(employees::Employee[])
+update_employee(employee::Employee)
+delete_employees(emp_ids::string[])
+--
+IO to save/ read employees to/ from mySQL databases</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1085</x>
+      <y>861</y>
+      <w>294</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>DataHandlerSerial
+File: dataHandlerSerial.py
+--
+get_all_employees():Employee[]
+save_employees(employees::Employee[])
+update_employee(employee::Employee)
+delete_employees(emp_ids::string[])
+--
+IO to save/ read employees to/ from pickle binary files</panel_attributes>
+    <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>400</x>
-      <y>290</y>
-      <w>30</w>
-      <h>90</h>
+      <x>1057</x>
+      <y>595</y>
+      <w>42</w>
+      <h>252</h>
     </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;70.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;340.0;40.0;340.0</additional_attributes>
   </element>
   <element>
-    <id>UMLUseCase</id>
+    <id>Relation</id>
     <coordinates>
-      <x>1010</x>
-      <y>370</y>
-      <w>120</w>
-      <h>40</h>
+      <x>1057</x>
+      <y>595</y>
+      <w>42</w>
+      <h>364</h>
     </coordinates>
-    <panel_attributes>starter.py</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;500.0;40.0;500.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>728</x>
+      <y>644</y>
+      <w>182</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>Person
+File: employee.py
+--
+- gender::string
+- bmi::string
+- birthday::datetime.date
+- age::int
+--
+get_birthday_string():string
+--
+- base class to describe a person</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLUseCase</id>
+    <id>UMLClass</id>
     <coordinates>
-      <x>1010</x>
-      <y>440</y>
-      <w>120</w>
-      <h>40</h>
+      <x>728</x>
+      <y>791</y>
+      <w>182</w>
+      <h>112</h>
     </coordinates>
-    <panel_attributes>util.py</panel_attributes>
+    <panel_attributes>Employee
+File: employee.py
+--
+- employee_id::string
+- sales::int
+- salary:: int
+--
+equals(other::Employee):boolean
+get_csv_line():string
+--
+- describes an employee</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLUseCase</id>
+    <id>Relation</id>
     <coordinates>
-      <x>1010</x>
-      <y>510</y>
-      <w>120</w>
-      <h>40</h>
+      <x>798</x>
+      <y>749</y>
+      <w>21</w>
+      <h>56</h>
     </coordinates>
-    <panel_attributes>test.py</panel_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>693</x>
+      <y>357</y>
+      <w>119</w>
+      <h>469</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..
+creates and displays</panel_attributes>
+    <additional_attributes>50.0;650.0;10.0;650.0;10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>378</x>
+      <y>378</y>
+      <w>287</w>
+      <h>161</h>
+    </coordinates>
+    <panel_attributes>inputConverter.py
+--
+convert_input(input::string, input_type::string):var
+convert_employee_id(emp_id::string):string
+convert_gender(gender::string):string
+convert_age(age::string):int
+convert_bmi(bmi::string):string
+convert_sales(sales::string):int
+convert_salary(salary::string):int
+convert_birthday(birthday::string):datetime.date
+--
+converts user input/ data read from data handlers
+to the appropriate type.
+uses inputValidator to validate input
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLUseCase</id>
+    <id>UMLState</id>
     <coordinates>
-      <x>1010</x>
-      <y>570</y>
-      <w>120</w>
-      <h>40</h>
+      <x>378</x>
+      <y>574</y>
+      <w>287</w>
+      <h>140</h>
     </coordinates>
-    <panel_attributes>config.py</panel_attributes>
+    <panel_attributes>inputValidator.py
+--
+validate_input(input::string, input_type::string):boolean
+validate_input_employee_id(empid::string):boolean
+validate_input_gender(gender::string):boolean
+validate_input_age(age::string):boolean
+validate_input_bmi(bmi::string):boolean
+validate_input_sales(sales::string):boolean
+validate_input_salary(salary::string):boolean
+validate_input_birthday(bday::string):boolean
+--
+validates user input based on defined rules
+</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLState</id>
+    <coordinates>
+      <x>1050</x>
+      <y>140</y>
+      <w>301</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>charts.py
+--
+display_statistic(statistic::{}, parameter::string, group::string)
+--
+displays supplied statistics in charts
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>427</x>
+      <y>532</y>
+      <w>210</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..
+uses to validate data before converting</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>840</x>
+      <y>161</y>
+      <w>224</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..
+uses to display statistics</panel_attributes>
+    <additional_attributes>300.0;20.0;10.0;20.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1113</x>
+      <y>385</y>
+      <w>210</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..
+offers interface to all implementations</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>434</x>
+      <y>686</y>
+      <w>987</w>
+      <h>301</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..
+use to validate gathered data</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;410.0;1390.0;410.0;1390.0;10.0;1350.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1372</x>
+      <y>798</y>
+      <w>49</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=..</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1372</x>
+      <y>910</y>
+      <w>49</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=..</panel_attributes>
+    <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>434</x>
+      <y>329</y>
+      <w>308</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..
+uses to validate input for employee
+creation/ updating</panel_attributes>
+    <additional_attributes>10.0;70.0;10.0;10.0;420.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>903</x>
+      <y>560</y>
+      <w>161</w>
+      <h>259</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+offers access to</panel_attributes>
+    <additional_attributes>210.0;10.0;50.0;10.0;50.0;350.0;10.0;350.0</additional_attributes>
   </element>
 </diagram>
