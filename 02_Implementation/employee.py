@@ -11,10 +11,10 @@ class Person:
     def __str__(self):
         gender_string = {"m": "Male", "f": "Female"}[self.gender.lower()]
         return "{} person, born {} ({}); bmi: {}".format(gender_string,
-                            self._get_birthday_string(),
+                            self.get_birthday_string(),
                             self.age, self.bmi)
 
-    def _get_birthday_string(self):
+    def get_birthday_string(self):
         bday = self.birthday
         return "{}-{}-{}".format(bday.year, bday.month, bday.day)
 
@@ -65,7 +65,7 @@ class Employee(Person):
         return "{},{},{},{},{},{},{}\n".format(self.employee_id, self.gender,
                                                 self.sales, self.bmi,
                                                 self.salary,
-                                                self._get_birthday_string(),
+                                                self.get_birthday_string(),
                                                 self.age)
 
 def create_employee(attributes):

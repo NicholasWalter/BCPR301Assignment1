@@ -1,5 +1,5 @@
 empid,gender,sales,bmi,salary,birthday,age
 X111,m,0,overweight,77,1995-10-14,21
 X112,m,888,overweight,66,1998-08-28,18
-X113,f,777,obesity,99,1980-07-29,99
+X113,f,777,obesity,99,1980-07-29
 D456,f,0,obesity,0,1970-01-01,99

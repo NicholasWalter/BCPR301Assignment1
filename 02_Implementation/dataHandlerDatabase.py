@@ -55,57 +55,59 @@ class DataHandlerDatabase(DataHandlerAbstract):
         return employees
     
     def save_employees(self, employees):
-        raise NotImplementedError
-        c = 'INSERT INTO employees VALUES' + \
-            '({}", "{}", "{}", "{}", "{}", "{}", "{}")'
-        for emp in employees:
+        c = 'INSERT INTO employees VALUES ("{}", "{}", "{}", "{}", "{}", "{}", "{}")'
+        for e in employees:
             command = c.format(e.employee_id, e.gender, e.age, e.sales, e.bmi,
                                 e.salary, e.get_birthday_string())
-            result = self._execute_command(command)
-            if result[0].startswith("Query OK"):
-                continue
-            # TODO: Error handling, should usually not occure because of data
-            # validation
-
+            try:
+                self._execute_command(command)
+            except Exception as err:
+                IO.stdErr("There was an error deleting employee {}".format(id))
+                print(str(err))
+    
     def update_employee(self, emp):
-        raise NotImplementedError
         c = 'UPDATE employees SET gender = "{}", age = {}, sales = {},' \
-            + ' bmi = "{}", salary = {}, birthday = "{}" WHERE id = "{}"'
-        command = c.format(emp.gender, emp.age, emp.sales, emp.bmi, emp.salary,
-                            emp.birthday, emp.employee_id)
-        result = self._execute_command(command)
-        if result[0].startswith("Query OK"):
-           return 
-        # TODO: Error handling
-        
+            + ' bmi = "{}", salary = {}, birthday = "{}" WHERE id ="{}"'
+        command = c.format(emp.gender, emp.age, emp.sales,
+                            emp.bmi, emp.salary, emp.birthday, emp.employee_id)
+        try:
+            self._execute_command(command)
+        except Exception as err:
+            IO.stdErr("There was an error deleting employee {}".format(id))
+            print(str(err))
 
     def delete_employees(self, employee_ids):
-        raise NotImplementedError
-        c = 'DELETE FROM employees WHERE id = {}'
+        c = 'DELETE FROM employees WHERE id="{}"'
         for id in employee_ids:
             command = c.format(id)
-            result = self._execute_command(command)
-            if result[0].startswith("Query OK"):
-                continue
-            else:
-                IO.stdErr("Error deleting employee {} from database".format(id))
+            try:
+                self._execute_command(command)
+            except Exception as err:
+                IO.stdErr("There was an error deleting employee {}".format(id))
+                print(str(err))
 
     def _execute_command(self, command):
         """
         executes an sql command on the database. does NOT protect against SQL
         injection.
         """
+        print("Executing command: " + command)
+
         db = pymysql.connect(self.db_ip, self.db_username, self.db_password,
                                 self.db)
         output = []
         cursor = db.cursor()
-        cursor.execute(command)
 
-        line = cursor.fetchone()
-        while line is not None:
-            output.append(line)
+        try:
+            cursor.execute(command)
+            db.commit()
             line = cursor.fetchone()
-
+            while not line is None:
+                output.append(line)
+                line = cursor.fetchone()
+        except Exception as err:
+            db.rollback()
+            raise err
         db.close()
         return output
 

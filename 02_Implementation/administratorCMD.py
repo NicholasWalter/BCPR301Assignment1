@@ -169,9 +169,10 @@ class administratorCMD(Cmd):
         try:
             handler = dataHandlerFile.DataHandlerFile(split[0])
         except FileNotFoundError:
-            print("could not find file \"{}\", skipping.".format(line))
+            print("could not find file \"{}\", skipping.".format(split[0]))
             return False
 
+        print("Reading csv file: {}".format(split[0]))
         # read employees from source file
         all_employees = handler.get_all_employees()
         to_save = []
@@ -199,7 +200,7 @@ class administratorCMD(Cmd):
         """
         if not IV.validate_input_employee_id(line):
             print("invalid employee id.")
-            self.do_help("update employee")
+            self.do_help("update_employee")
             return False
         to_change = dataHandler.get_employee(line, self._datasource)
         print("The employee to change:")
@@ -218,6 +219,7 @@ class administratorCMD(Cmd):
                     break
                 uin = input(prompt.format(a, getattr(to_change, a)))
             if not skip:
+                uin = IC.convert_input(uin, a)
                 setattr(to_change, a, uin)
 
         print("Updated employee:")
