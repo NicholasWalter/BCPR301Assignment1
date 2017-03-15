@@ -12,6 +12,7 @@ import pymysql
 # project imports
 from dataHandlerAbstract import DataHandlerAbstract
 import employee
+import inputConverter as IC
 import IOHelper as IO
 
 class DataHandlerDatabase(DataHandlerAbstract):
@@ -41,17 +42,20 @@ class DataHandlerDatabase(DataHandlerAbstract):
         employees = []
 
         for l in lines:
-            parameters = {}
-            parameters["empid"] = l[0]
-            parameters["gender"] = l[1]
-            parameters["age"] = int(l[2])
-            parameters["sales"] = int(l[3])
-            parameters["bmi"] = l[4]
-            parameters["salary"] = int(l[5])
-            bs = l[6].split("-")
-            bday = date(int(bs[0]), int(bs[1]), int(bs[2]))
-            parameters["birthday"] = bday
-            employees.append(employee.create_employee(parameters))
+            try:
+                parameters = {}
+                parameters["empid"] = IC.convert_input(l[0], "empid")
+                parameters["gender"] = IC.convert_input(l[1], "gender")
+                parameters["age"] = IC.convert_input(l[2], "age")
+                parameters["sales"] = IC.convert_input(l[3], "sales")
+                parameters["bmi"] = IC.convert_input(l[4], "bmi")
+                parameters["salary"] = IC.convert_input(l[5], "salary")
+                parameters["birthday"] = IC.convert_input(l[6], "birthday")
+                employees.append(employee.create_employee(parameters))
+            except Exception as err:
+                IO.stdErr("Error in translating database row: " + str(l))
+                IO.stdErr(str(err))
+                print(parameters)
         return employees
     
     def save_employees(self, employees):

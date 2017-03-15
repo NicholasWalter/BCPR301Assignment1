@@ -136,6 +136,10 @@ def _valid_input_integer(integer_input, digits):
         integer_input: String to check
         digits: the number of digits the input may have
     """
+    if type(integer_input).__name__ == "int":
+        return integer_input in range(1000)
+
+    # now we know its a string
     if len(integer_input) != digits:
         return False
     try:
