@@ -95,8 +95,6 @@ class DataHandlerDatabase(DataHandlerAbstract):
         executes an sql command on the database. does NOT protect against SQL
         injection.
         """
-        print("Executing command: " + command)
-
         db = pymysql.connect(self.db_ip, self.db_username, self.db_password,
                                 self.db)
         output = []

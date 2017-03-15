@@ -15,19 +15,19 @@ def validate_input(input, input_type):
                     "birthday": validate_input_birthday}
     return validators[input_type](input)
 
-def validate_input_employee_id(employee_id_input):
+def validate_input_employee_id(empid):
     """
     checks whether the supplied input is in the correct format
     correct format is [A-Z][0-9]{3} e.g. A123
     @params:
-        employee_id_input: String to check
+        empid: String to check
     @return:
         True if the input is valid, otherwise False
     """
-    if len(employee_id_input) != 4:                     # must be 4 digits long
+    if len(empid) != 4:                     # must be 4 digits long
         return False
-    first_digit = employee_id_input[0].upper()
-    rest = employee_id_input[1:]
+    first_digit = empid[0].upper()
+    rest = empid[1:]
     if not ord(first_digit) in range(65,91):            # first digits must be letter
         return False
     try:
@@ -36,71 +36,71 @@ def validate_input_employee_id(employee_id_input):
         return False
     return True
 
-def validate_input_gender(gender_input):
+def validate_input_gender(gender):
     """
     checks whether the supplied input is valid
     valid input is either "m" or "f" in upper or lower case
     @params:
-        gender_input: String to check
+        gender: String to check
     @return:
         True if the input is valid, otherwise False
     """
-    return gender_input in ["M", "F", "m", "f"]         # can be "m" or "f" in upper or lower
+    return gender in ["M", "F", "m", "f"]         # can be "m" or "f" in upper or lower
 
-def validate_input_age(age_input):
+def validate_input_age(age):
     """
     checks whether the supplied age input is valid
     valid are all integers between 00 and 99
     @params:
-        age_input: String to check
+        age: String to check
     @return:
         True if the input is valid, otherwise False
     """
-    return True in [_valid_input_integer(age_input, i) for i in range(1, 3)]
+    return True in [_valid_input_integer(age, i) for i in range(1, 3)]
 
-def validate_input_bmi(bmi_input):
+def validate_input_bmi(bmi):
     """
     checks whether the supplied bmi input is valid
     valid inputs are "normal", "overweight", "obesity" and "underweight"
     in upper or lower case
     @params:
-        bmi_input: String to check
+        bmi: String to check
     @return:
         True if the input is valid, otherwise False
     """
-    return bmi_input.lower() in ["normal", "overweight", "obesity",
+    return bmi.lower() in ["normal", "overweight", "obesity",
                                     "underweight"]
 
-def validate_input_sales(sales_input):
+def validate_input_sales(sales):
     """
     checks whether the supplied sales input is valid
     valid are all integers between 000 and 999
     @params:
-        sales_input: String to check
+        sales: String to check
     @return:
         True if the input is valid, otherwise False
     """
-    return True in [_valid_input_integer(sales_input, i) for i in range(1, 4)]
+    return True in [_valid_input_integer(sales, i) for i in range(1, 4)]
 
-def validate_input_salary(salary_input):
+def validate_input_salary(salary):
     """
     checks whether the supplied salary input is valid
     valid are all integers between 00 and 99 as well as between 000 and 999
     @params:
-        salary_input: String to check
+        salary: String to check
     @return:
         True if the input is valid, otherwise False
     """
-    return True in [_valid_input_integer(salary_input, i) for i in range(1, 4)]
+    return True in [_valid_input_integer(salary, i) for i in range(1, 4)]
 
-def validate_input_birthday(birthday_input):
+def validate_input_birthday(bday):
     """
     checks whether the supplied birthday input is valid
     valid birthdays consist of day, month and year
     @params:
-        birthday_input
+        bday
     """
-    split = birthday_input.split("-")
+    split = bday.split("-")
     if len(split) != 3:                                 # should be 3 parts to this
         return False
     day = split[0]

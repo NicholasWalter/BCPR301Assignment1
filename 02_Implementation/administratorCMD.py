@@ -13,7 +13,8 @@ import os
 import sys
 
 # project imports
-import administratorGUI as GUI
+from administratorAbstract import AdministratorAbstract
+import charts as GUI
 import dataHandlerFacade as dataHandler
 import dataHandlerFile
 import employee
@@ -21,11 +22,12 @@ import inputConverter as IC
 import inputValidator as IV
 import util
 
-class administratorCMD(Cmd):
+class AdministratorCMD(Cmd, AdministratorAbstract):
     """
     """
     def __init__(self):
         Cmd.__init__(self)
+        AdministratorAbstract.__init__(self)
         self.prompt = "> "
         self.my_name = "Employee administration program"
         self._datasource = "csv"
@@ -309,19 +311,15 @@ class administratorCMD(Cmd):
                     print('invalid parameter: "{}", skipping'.format(item))
         Cmd.cmdloop(self)
 
-def stdOut(message):
-    print(message)
+    def stdOut(self, msg):
+        print(msg)
 
-def stdErr(message):
-    print(message)
+    def stdErr(self, msg):
+        print(msg)
 
 instance = None
 
-def start(args):
+def start(args, new_instance):
     global instance
-    instance = administratorCMD()
+    instance = new_instance
     instance.cmdloop(args)
-
-if __name__ == "__main__":
-    a = administratorCMD()
-    a.cmdloop()

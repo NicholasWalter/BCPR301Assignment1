@@ -142,5 +142,5 @@ class DataHandlerAbstract(metaclass=abc.ABCMeta):
         pass
 
     @abstractmethod
-    def delete_employees(self, employees):
+    def delete_employees(self, emp_ids):
         pass

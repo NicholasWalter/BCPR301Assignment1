@@ -12,12 +12,9 @@ import administratorCMD as CMD
 import IOHelper as IO
 
 def start():
-    IO.initialize(CMD)
-    line = ""
-    if not len(sys.argv) == 1:
-        for i in range(1, len(sys.argv)):
-            line += sys.argv[i] + " "
-    CMD.start(sys.argv[1:])
+    instance = CMD.AdministratorCMD()
+    IO.initialize(instance)
+    CMD.start(sys.argv[1:], instance)
 
 if __name__ == "__main__":
     start()
