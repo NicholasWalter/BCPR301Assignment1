@@ -2,49 +2,84 @@ import cmd
 import string
 import sys
 
-#from controller import Controller 
+#from controller import Controller
+
 
 class CLI(cmd.Cmd):
+
+    '''
+     Hello this is the xxxxxxdsadasd
+    '''
 
     def __init__(self):
         cmd.Cmd.__init__(self)
         self.prompt = '> '
-        #self.input = ''
-        #self.ctl = null
 
     def set_controller(self, ctl):
         self.ctl = ctl
 
-    def do_hello(self, arg):
-        print ("hello again", arg, "!")
-
-    def help_hello(self):
-        print ("syntax: hello [message]"),
-        print ("-- prints a hello message")
-
     def do_quit(self, arg):
+        '''
+        syntax: quit
+        -- terminates the application
+        '''
         sys.exit(1)
 
-    def help_quit(self):
-        print ("syntax: quit"),
-        print ("-- terminates the application")
+    # def help_quit(self):
+    #     print("syntax: quit"),
+    #     print("-- terminates the application")
     # shortcuts
-    do_q = do_quit
+    # do_q = do_quit
 
-    def do_new(self, arg):
+    def do_add(self, arg):
+        '''
+        syntax: add
+        -- add an employee    
+        '''
         self.ctl.new_employee()
 
-    def input(self, arg): 
-         input_data = input(arg)
+    def do_load(self, path):
+        self.ctl.load_file(path)
 
-         return input_data
-    def show(self, arg = None, arg1 = None):
+    def help_load(self):
+        print("syntax: load [path of the file]"),
+        print("-- add the file data")
+
+    def do_save(self, path):
+        self.ctl.save_file(path)
+
+    def help_save(self):
+        print("syntax: save [path of the file]"),
+        print("-- save data in local storage")
+
+    def do_serialise(self, path):
+        self.ctl.serialise_objects(path)
+
+    def help_serialise(self):
+        print("syntax: serialise [path of the file]"),
+        print("-- add the file data")
+
+    def do_line_chart(self, arg):
+        self.ctl.display_bar()
+
+    def help_line_chart(self):
+        print("syntax: line_chart")
+        print("-- display a line_chart in chrome")
+
+    def input(self, arg):
+        input_data = input(arg)
+
+        return input_data
+
+    def show(self, arg=None, arg1=None):
         if not arg1:
-            print (arg)
+            print(arg)
         else:
-            print (arg, arg1)
-        
-    #def show_two_arguments(self, arg, arg1):
+            print(arg, arg1)
+
+    def do_test(self, arg):
+        self.ctl.test(arg)
+    # def show_two_arguments(self, arg, arg1):
    #     print (arg, arg1)
 #
 # try it out
