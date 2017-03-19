@@ -26,3 +26,8 @@ def calculate_age(born):
 def exit():
     IOHelper.stdOut("Exiting program. Goodbye.")
     sys.exit()
+
+if __name__ == "__main__":
+    split = sys.argv[1].split("-")
+    bday = datetime.date(int(split[0]), int(split[1]), int(split[2]))
+    print(calculate_age(bday))

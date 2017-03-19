@@ -6,6 +6,9 @@ sent to this module from every other module by importing this.
 This makes future expansion with for example a GUI administrator easier as the
 new module will only have to implement the stdOut and stdErr messages instead of
 retrofitting every other module that needs to pass messages.
+
+since all functionality consists simply of passing information to another module
+no testing needs to be done.
 """
 
 

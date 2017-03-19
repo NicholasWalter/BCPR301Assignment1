@@ -15,6 +15,8 @@ import inputConverter as IC
 import IOHelper as IO
 
 
+CSV_COMMENT = "$"
+
 class DataHandlerFile(DataHandlerAbstract):
     def __init__(self, file_path = "XXX"):
         """
@@ -55,26 +57,26 @@ class DataHandlerFile(DataHandlerAbstract):
                 if not skipped_first:
                     skipped_first = True
                     continue
+                if line.startswith(CSV_COMMENT):
+                    print("Encountered comment: " + line)
+                    continue
                 try:
                     split = line.split(",")
                     # TODO: HIGH: validate data
-                    emp_id = split[0]
-                    gender = split[1]
-                    sales = int(split[2])
-                    bmi = split[3]
-                    salary = int(split[4])
-                    split2 = split[5].split("-")
-                    year = int(split2[0])
-                    month = int(split2[1])
-                    day = int(split2[2])
-                    bday = datetime.date(year, month, day)
-                    age = int(split[6])
+                    emp_id = IC.convert_input(split[0], "empid")
+                    gender = IC.convert_input(split[1], "gender")
+                    sales = IC.convert_input(split[2], "sales")
+                    bmi = IC.convert_input(split[3], "bmi")
+                    salary = IC.convert_input(split[4], "salary")
+                    bday = IC.convert_input(split[5], "birthday")
+                    age = IC.convert_input(split[6], "age")
                     attributes = {"empid": emp_id, "gender": gender, "sales": sales,
                                     "bmi": bmi, "salary": salary, "birthday": bday,
                                     "age": age}
                     # TODO: high: catch ValueError from employee creation
                     employees.append(employee.create_employee(attributes))
-                except:
+                except Exception as err:
+                    print(str(err))
                     errors.append("Error when reading line: {}".format(line))
         [IO.stdErr(e) for e in errors]
         return employees
@@ -107,6 +109,9 @@ class DataHandlerFile(DataHandlerAbstract):
         updated = False
         with open(self._file) as source:
             for line in source:
+                if line.startswith(CSV_COMMENT):
+                    lines.append(line)
+                    continue
                 split = line.split(",")
                 if split[0] == employee.employee_id:
                     lines.append(employee.get_csv_line())
@@ -125,6 +130,9 @@ class DataHandlerFile(DataHandlerAbstract):
         lines = []
         with open(self._file) as source:
             for line in source:
+                if line.startswith(CSV):
+                    lines.append(line)
+                    continue
                 split = line.split(",")
                 if split[0] in employee_ids:
                     continue

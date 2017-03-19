@@ -1,3 +1,8 @@
+"""
+this module offers the AdministratorAbstract class
+"""
+
+# python imports
 from abc import abstractmethod, ABCMeta
 
 class AdministratorAbstract(metaclass=ABCMeta):

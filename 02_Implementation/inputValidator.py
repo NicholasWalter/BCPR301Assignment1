@@ -3,9 +3,24 @@ handles the validation of user input and data read from database. Each function
 will return True if the input is valid, otherwise False
 """
 
+# python imports
 import datetime
+import doctest
+
+# project imports
+import util
 
 def validate_input(input, input_type):
+    """
+    offers a quick interface to all validation functions using the input type.
+    all functionality borrowed from other functions, that means no tests
+    @params:
+        input:
+            the input string to validate
+        input_type:
+            type to validate input against. use "empid", "gender", "age", "bmi",
+            "sales" "salary" or "birthday"
+    """
     validators = {"empid": validate_input_employee_id,
                     "gender": validate_input_gender,
                     "age": validate_input_age,
@@ -23,6 +38,14 @@ def validate_input_employee_id(empid):
         empid: String to check
     @return:
         True if the input is valid, otherwise False
+    >>> validate_input_employee_id("A123")
+    True
+    >>> validate_input_employee_id("AA12")
+    False
+    >>> validate_input_employee_id("A1234")
+    False
+    >>> validate_input_employee_id("A12")
+    False
     """
     if len(empid) != 4:                     # must be 4 digits long
         return False
@@ -44,6 +67,18 @@ def validate_input_gender(gender):
         gender: String to check
     @return:
         True if the input is valid, otherwise False
+    >>> validate_input_gender("m")
+    True
+    >>> validate_input_gender("f")
+    True
+    >>> validate_input_gender("M")
+    True
+    >>> validate_input_gender("F")
+    True
+    >>> validate_input_gender("male")
+    False
+    >>> validate_input_gender("female")
+    False
     """
     return gender in ["M", "F", "m", "f"]         # can be "m" or "f" in upper or lower
 
@@ -55,6 +90,18 @@ def validate_input_age(age):
         age: String to check
     @return:
         True if the input is valid, otherwise False
+    >>> validate_input_age(0)
+    True
+    >>> validate_input_age("0")
+    True
+    >>> validate_input_age(99)
+    True
+    >>> validate_input_age("99")
+    True
+    >>> validate_input_age(100)
+    False
+    >>> validate_input_age("100")
+    False
     """
     return True in [_valid_input_integer(age, i) for i in range(1, 3)]
 
@@ -67,6 +114,17 @@ def validate_input_bmi(bmi):
         bmi: String to check
     @return:
         True if the input is valid, otherwise False
+    // I honestly dont think this actually needs tests but eh...
+    >>> validate_input_bmi("normal")
+    True
+    >>> validate_input_bmi("overweight")
+    True
+    >>> validate_input_bmi("obesity")
+    True
+    >>> validate_input_bmi("underweight")
+    True
+    >>> validate_input_bmi("False")
+    False
     """
     return bmi.lower() in ["normal", "overweight", "obesity",
                                     "underweight"]
@@ -79,6 +137,12 @@ def validate_input_sales(sales):
         sales: String to check
     @return:
         True if the input is valid, otherwise False
+    >>> validate_input_sales(1000)
+    False
+    >>> validate_input_sales(999)
+    True
+    >>> validate_input_sales(0)
+    True
     """
     return True in [_valid_input_integer(sales, i) for i in range(1, 4)]
 
@@ -90,6 +154,12 @@ def validate_input_salary(salary):
         salary: String to check
     @return:
         True if the input is valid, otherwise False
+    >>> validate_input_salary(1000)
+    False
+    >>> validate_input_salary(999)
+    True
+    >>> validate_input_salary(0)
+    True
     """
     return True in [_valid_input_integer(salary, i) for i in range(1, 4)]
 
@@ -99,9 +169,18 @@ def validate_input_birthday(bday):
     valid birthdays consist of day, month and year
     @params:
         bday
+    >>> validate_input_birthday("01-01-1990")
+    True
+    >>> validate_input_birthday("1990-01-01")
+    False
+    >>> validate_input_birthday("31-02-1990")
+    False
+    >>> validate_input_birthday("01-01-10000")
+    False
     """
     split = bday.split("-")
     if len(split) != 3:                                 # should be 3 parts to this
+        print("birthday wrong input: non-valid split")
         return False
     day = split[0]
     month = split[1]
@@ -111,6 +190,7 @@ def validate_input_birthday(bday):
         month_int = int(month)
         year_int = int(year)
     except:
+        print("birthday wrong input: could not convert to integer")
         return False
     if day_int not in range(1, 32):                     # day should be 1 to 31
         return False
@@ -124,10 +204,9 @@ def validate_input_birthday(bday):
         return False
     return True
 
-def validate_input_age_and_birthday(birthday, age):
-    today = datetime.date.today()
-    return age == today.year - born.year - ((today.month, today.day) < (born.month, born.day))
-
+def validate_input_age_and_birthday(age, birthday):
+    bday_age = util.calculate_age(birthday)
+    return age == bday_age
 
 def _valid_input_integer(integer_input, digits):
     """
@@ -135,9 +214,27 @@ def _valid_input_integer(integer_input, digits):
     @params:
         integer_input: String to check
         digits: the number of digits the input may have
+    >>> _valid_input_integer(1, 1)
+    True
+    >>> _valid_input_integer(1, 2)
+    True
+    >>> _valid_input_integer("1", 1)
+    True
+    >>> _valid_input_integer(10, 2)
+    True
+    >>> _valid_input_integer(10, 1)
+    False
     """
+    try:
+        integer_input = int(integer_input)
+    except:
+        # not an integer
+        print("not an integer")
+        return False
+    return integer_input in range(10**digits)
+
     if type(integer_input).__name__ == "int":
-        return integer_input in range(1000)
+        return integer_input in range(10**digits)
 
     # now we know its a string
     if len(integer_input) != digits:
@@ -148,12 +245,6 @@ def _valid_input_integer(integer_input, digits):
         return False
     return True
 
-################################################################################
-## Testing functionality                                                      ##
-################################################################################
-
-def test_input_integer():
-    print("testing inputValidator._valid_input_integer()")
-    test_cases = [0, 1000, 99, 999]
-    for i in test_cases:
-        pass
+if __name__ == "__main__":
+    print("testing inputValidator.py")
+    doctest.testmod()

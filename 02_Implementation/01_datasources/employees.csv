@@ -1,7 +1,13 @@
 empid,gender,sales,bmi,salary,birthday,age
-A123,m,0,overweight,77,1995-10-14,21
-B234,m,888,overweight,66,1998-08-28,18
-C345,f,777,obesity,99,1980-07-29,99
-D456,f,0,obesity,0,1970-1-1,99
-X111,m,0,overweight,77,1995-10-14,21
-X112,m,888,overweight,66,1998-8-28,18
+$ use "$" for comments
+$ do NOT use before csv identification line
+A123,m,987,overweight,192,14-10-1990,26
+B234,m,876,normal,749,28-08-1988,28
+C345,f,765,underweight,821,18-07-1974,42
+D456,f,876,obesity,238,21-09-1964,52
+E567,m,893,normal,298,11-09-1975,41
+X12,m,918,obesity,98,1-1-1953,64
+X123,m,9999,normal,871,23-05-1987,29
+X234,m,999,tooheavy,123,01-06-1991,25
+X345,f,999,normal,123,31-02-1968,49
+X456,f,999,normal,984,29-02-1968,75
