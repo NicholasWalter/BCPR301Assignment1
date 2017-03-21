@@ -1,0 +1,80 @@
+empid,gender,sales,bmi,salary,birthday,age
+$ Ignoring Brendan Hold because all are invalid (emp id)
+$ Joshua Fletcher's data
+X444,m,531,overweight,221,27-05-1929,87
+Y572,m,423,normal,513,25-11-1956,30
+N472,F,681,Obesity,13,18-03-1952,64
+S822,M,225,Underweight,651,15-08-2000,16
+B736,F,135,Normal,715,5-11-1968,48
+I918,F,142,Overweight,31,4-12-1953,63
+V902,F,413,Underweight,635,21-07-1966,50
+B263,C,741,Normal,513,30-01-1982,25
+Q625,F,134,Obesity,31,12-03-1952,65
+X411,F,431,Obesity,321,24-08-1975,41
+$ Simon Winder's data
+A123,M,123,Normal,39,31-01-1992,23
+B123,F,234,Normal,39,25-12-1989,25
+I123,M,13,OverWeight,123,31-12-1989,2
+123I,m,40.5,Underweight,000,15-3-1927,90
+XXD4, F,001,,002,29-02-1967,50
+u258,F,999,Obesity,999,31-02-1967,50
+Q258,X,999,Normal,.99,1967-02-01,50
+Q258/F/123/Normal/123/01-01-1967/50
+Q234  F  123  Normal  123  01-01-1967  50
+$ Timothy Bray's data
+T123,M,654,Normal,56,18-10-1996,20
+G834,M,213,Overweight,566,4-12-1990,26
+S931,F,986,Obesity,852,1-5-2001,15
+P12,M,682,Underweight,135,26-7-1998,18
+P912,D,682,Underweight,135,26-7-1998,18
+P823,M,682,Underweight,135,26-7-1998,78
+B183,M,43,Underweight,135,26-7-1998,18
+P999,M,682,Fit,135,26-7-1998,18
+B720,F,867,Normal,845864,6-1-1993,24
+K591,F,867,Normal,741,6/1/1987,30
+N723,F,867,Normal,741,6-15-1987,30
+L831,F,867,Normal,741,90-1-1987,30
+J830,F,867,Normal,741,6-1-3000,30
+$ Isaac Mackle's data
+A123,m,123,normal,109,24-10-1996,20
+B234,f,321,overweight,100,01-01-2001,16
+C567,f,234,obesity,999,32-04-2017,54
+D890,m,567,underweight,598,14-12-1990
+C111,m,111,normal,234,29-10-1956,99
+Z999,f,435,underweight,500,10/09/1995,21
+A123,f,797,normal,444,29-10-1956,60
+A113,f,665,normal,347,07-07-19-1984,32
+I111,m,512,obesity,231,01-11-1976,40
+Y369,f,666,normal,689,14-12-1991,25
+$ Sean Reilly's data (corrected: Obesity --> Obesity)
+A123,M,123,Normal,4523,20-10-2000,16
+124,F,124,Normal,24,21-11-2000,16
+A125,m,125,Obesity,25,6-5-1990,25
+f,126,Obesity,26,7-6-1991,25
+A127,,127,Overweight,27,1992-7-8,24
+A128,F,128,28,9-8-1993,23
+A129,m,Underweight,29,10-9-1994,22
+A130,f,130,30,11-10-1995,21
+A131,M,131,Normal,3-4-1980,36
+A132,F,132,Overweight,32,31
+A123,M,123,Normal,23,20-10-2000,16
+A124,F,124,Normal,24,21-11-2000,16
+A125,M,125,Obesity,25,6-5-1990,26
+A126,F,126,Obesity,26,7-6-1991,25
+A127,M,127,Overweight,27,8-7-1992,24
+A128,F,128,Overweight,28,9-8-1993,23
+A129,M,129,Underweight,29,10-9-1994,22
+A130,F,130,Underweight,30,11-10-1995,21
+A131,M,131,Normal,31,3-4-1980,36
+A132,F,132,Overweight,32,8-7-1985,31
+$ Josiah Witheford's data
+J123,Male,200,Normal,20000,5-7-1996,20
+H234,Female,400 Overweight,50000,2-3-1993,24
+G555,Male,2,Underweight,25,2-3-2000,21
+E001,Female,350,Obese,42000,1-1-2000,17
+L223,Male,0,Average,56700,1-1-1917,100
+J123,Male,200,Normal,20000,5-7-1996,20
+B007,Male,500,Normal,100000,2-21-1977,40
+Z555,Female,52,Underweight,38000,3-17-1996,21
+T099,Female,15,Obese,0,8-25-1998,18
+456H,Both,0,Underweight,500,5-5-1855,150
