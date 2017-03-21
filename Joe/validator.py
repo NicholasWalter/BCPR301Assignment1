@@ -1,3 +1,22 @@
+"""
+>>> import datetime
+>>> v = Validator()
+>>> v.is_valid_employee_id('V123')
+True
+>>> v.is_valid_gender("m")
+False
+>>> v.is_valid_age("23")
+True
+>>> v.is_valid_sales("12")
+False
+>>> v.is_valid_salary("1234")
+False
+>>> v.is_valid_BMI("fit")
+False
+>>> v.is_valid_birthday("12-13-1991")
+False
+
+"""
 import datetime
 
 
@@ -12,18 +31,19 @@ class Validator(object):
             num_ascii = ord(input_data[0])
             if num_ascii > 64 and num_ascii < 91:
                 int_digit = input_data[1::]
-                #print(int_digit)
-                #print(int_digit.__len__())
+                # print(int_digit)
+                # print(int_digit.__len__())
                 if int_digit.isdigit() and int_digit.__len__() == 3:
                     result = True
                 else:
                     result = False
             else:
                 result = False
-        #print(input_data)
+        # print(input_data)
         return result
 
     def is_valid_gender(self, input_data):
+
         result = False
         if input_data == 'M' or input_data == 'F':
             result = True
@@ -81,23 +101,23 @@ class Validator(object):
 
         #raise ValueError("Incorrect data format, should be YYYY-MM-DD")
     # def is_valid_birthday(self, input_data):
-    # 	result = False
-    # 	date = input_data.split("-")
-    # 	print(date)
-    # 	if date.__len__() == 3:
-    # 		if date[0].isdigit() and date[0] <= 2:
-    # 			if date[1].isdigit() and date[1] <= 2:
-    # 				if date[3].isdigit() and date[3] == 4:
-    # 					result = True
-    # 				else:
-    # 					result = False
-    # 			else:
-    # 				result = False
-    # 		else:
-    # 			result = False
-    # 	else:
-    # 		result = False
-    # 	return result
+    #   result = False
+    #   date = input_data.split("-")
+    #   print(date)
+    #   if date.__len__() == 3:
+    #       if date[0].isdigit() and date[0] <= 2:
+    #           if date[1].isdigit() and date[1] <= 2:
+    #               if date[3].isdigit() and date[3] == 4:
+    #                   result = True
+    #               else:
+    #                   result = False
+    #           else:
+    #               result = False
+    #       else:
+    #           result = False
+    #   else:
+    #       result = False
+    #   return result
     def is_load_data(self, input_data):
         result = 0
         data = input_data.split(',')
@@ -120,3 +140,7 @@ class Validator(object):
             return True
         else:
             return False
+
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod(verbose=True)

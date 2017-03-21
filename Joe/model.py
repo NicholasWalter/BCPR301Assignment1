@@ -1,10 +1,15 @@
+# """
+# >>> model = new Model()
+# >>> data = ["EMPID" : 'A123', ""]
+# >>> model.add_the_employee()
+
+# """
 from employee import Employee
 
 
 class Model(object):
 
     """docstring for Model"""
-    #cmd_view = inject.instance(CLI)
 
     def __init__(self):
         self.employees = []
@@ -13,7 +18,7 @@ class Model(object):
         new_employee = Employee(data['EMPID'], data['Gender'], data['Age'], data[
                                 'Sales'], data['BMI'], data['Salary'], data['Birthday'])
         self.employees.append(new_employee)
-        print(self.employees)
+        # print(self.employees)
         return new_employee
 
     def get_all_salaries(self):
@@ -34,3 +39,8 @@ class Model(object):
             age_list.append(int(employee.age))
         age_list.sort()
         return age_list
+
+
+# if __name__ == "__main__":
+#     import doctest
+#     doctest.testmod(verbose=True)
