@@ -3,22 +3,21 @@
 3)  Display command line help of available commands						ok
 4)  Change options										ok
 5)  Validate your selections                                                                    ok
-6)  Provides object-persistence/ object serialization using either pickle or shelve
+6)  Provides object-persistence/ object serialization using either pickle or shelve             ok
 7)  Load data from a file									ok
 8)  Raises exceptions and provides exception handling						ok
-9)  Amount of error trapping and handling
+9)  Amount of error trapping and handling                                                       ??
 10) provide doctests
 11) provide unittests
 12) breadth of test coverage
-13) can deal with directories and file directions
+13) can deal with directories and file directions                                               ??
 14) pretty print (pie charts etc)                                                               ok
 15) can save and read data from a database							ok
 
 
-Todo:
-- implement dataHandlerSerial.py
-- implement administratorCMD.do_read_csv_file
-- implement administratorCMD.do_serialize_employees
-- implement administratorCMD.do_deserialize_employees
-- implement administratorCMD.do_update_employee
-- implement administratorCMD.do_delete_employees
+A)  Class diagram                                                                               ok
+B)  Help file                                                                                   ok
+C)  Tasks (see above)
+D)  PEP8 check                                                                                 meh
+E)  self-marking sheet                                                                          ok
+F)  Database configuration                                                                      ok

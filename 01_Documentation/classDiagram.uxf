@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>7</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>728</x>
-      <y>245</y>
-      <w>182</w>
-      <h>210</h>
+      <x>600</x>
+      <y>424</y>
+      <w>208</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>AdministratorCMD
 File: administratorCMD.py
@@ -32,10 +32,10 @@ features of the program</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>728</x>
-      <y>0</y>
-      <w>182</w>
-      <h>91</h>
+      <x>600</x>
+      <y>144</y>
+      <w>208</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>&lt;&lt;AdministratorAbstract&gt;&gt;
 File: administratorAbstract.py
@@ -50,10 +50,10 @@ by all Administrator classes</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>812</x>
-      <y>84</y>
-      <w>21</w>
-      <h>175</h>
+      <x>696</x>
+      <y>240</y>
+      <w>24</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;230.0</additional_attributes>
@@ -61,10 +61,10 @@ by all Administrator classes</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>924</x>
-      <y>70</y>
-      <w>84</w>
-      <h>21</h>
+      <x>824</x>
+      <y>224</y>
+      <w>96</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>cmd.CMD
 bg=gray</panel_attributes>
@@ -73,10 +73,10 @@ bg=gray</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>812</x>
-      <y>84</y>
-      <w>161</w>
-      <h>175</h>
+      <x>696</x>
+      <y>240</y>
+      <w>184</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>210.0;10.0;210.0;40.0;10.0;40.0;10.0;230.0</additional_attributes>
@@ -84,10 +84,10 @@ bg=gray</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>392</x>
-      <y>245</y>
-      <w>196</w>
-      <h>70</h>
+      <x>216</x>
+      <y>424</y>
+      <w>224</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>starter.py
 --
@@ -95,16 +95,16 @@ start()
 --
 entry point to the project;
 reads system arguments
-</panel_attributes>
+bg=orange</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>581</x>
-      <y>259</y>
-      <w>161</w>
-      <h>35</h>
+      <x>432</x>
+      <y>440</y>
+      <w>184</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=&lt;..
 starts
@@ -114,10 +114,10 @@ administrator.start()</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>392</x>
-      <y>91</y>
-      <w>196</w>
-      <h>98</h>
+      <x>216</x>
+      <y>248</y>
+      <w>224</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>IOHelper.py
 --
@@ -133,10 +133,10 @@ reads system arguments
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>469</x>
-      <y>182</y>
-      <w>63</w>
-      <h>77</h>
+      <x>304</x>
+      <y>352</y>
+      <w>72</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;..
 initializes</panel_attributes>
@@ -145,10 +145,10 @@ initializes</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>581</x>
-      <y>84</y>
-      <w>175</w>
-      <h>49</h>
+      <x>432</x>
+      <y>240</y>
+      <w>200</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 stores
@@ -158,10 +158,10 @@ forwards messages</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1050</x>
-      <y>245</y>
-      <w>294</w>
-      <h>147</h>
+      <x>968</x>
+      <y>424</y>
+      <w>336</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>dataHandlerFacade.py
 --
@@ -181,10 +181,10 @@ DataHandlerAbstract interface</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>903</x>
-      <y>259</y>
-      <w>161</w>
-      <h>28</h>
+      <x>800</x>
+      <y>440</y>
+      <w>184</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=&lt;..
 uses for data IO</panel_attributes>
@@ -193,10 +193,10 @@ uses for data IO</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1050</x>
-      <y>427</y>
-      <w>294</w>
-      <h>175</h>
+      <x>968</x>
+      <y>632</y>
+      <w>336</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>&lt;&lt;DataHandlerAbstract&gt;&gt;
 File: dataHandlerAbstract.py
@@ -219,10 +219,10 @@ classes</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>938</x>
-      <y>371</y>
-      <w>84</w>
-      <h>21</h>
+      <x>840</x>
+      <y>568</y>
+      <w>96</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>abc.ABCMeta
 bg=gray</panel_attributes>
@@ -231,10 +231,10 @@ bg=gray</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>966</x>
-      <y>385</y>
-      <w>140</w>
-      <h>56</h>
+      <x>872</x>
+      <y>584</y>
+      <w>160</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.
 metaclass</panel_attributes>
@@ -243,10 +243,10 @@ metaclass</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1085</x>
-      <y>637</y>
-      <w>294</w>
-      <h>98</h>
+      <x>1008</x>
+      <y>872</y>
+      <w>336</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>DataHandlerFile
 File: dataHandlerFile.py
@@ -262,10 +262,10 @@ IO to save/ read employees to/ from .csv files</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1057</x>
-      <y>595</y>
-      <w>42</w>
-      <h>140</h>
+      <x>976</x>
+      <y>824</y>
+      <w>48</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;180.0;40.0;180.0</additional_attributes>
@@ -273,10 +273,10 @@ IO to save/ read employees to/ from .csv files</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1085</x>
-      <y>749</y>
-      <w>294</w>
-      <h>98</h>
+      <x>1008</x>
+      <y>1000</y>
+      <w>336</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>DataHandlerDatabase
 File: dataHandlerDatbase.py
@@ -292,10 +292,10 @@ IO to save/ read employees to/ from mySQL databases</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1085</x>
-      <y>861</y>
-      <w>294</w>
-      <h>98</h>
+      <x>1008</x>
+      <y>1128</y>
+      <w>336</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>DataHandlerSerial
 File: dataHandlerSerial.py
@@ -311,10 +311,10 @@ IO to save/ read employees to/ from pickle binary files</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1057</x>
-      <y>595</y>
-      <w>42</w>
-      <h>252</h>
+      <x>976</x>
+      <y>824</y>
+      <w>48</w>
+      <h>288</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;340.0;40.0;340.0</additional_attributes>
@@ -322,10 +322,10 @@ IO to save/ read employees to/ from pickle binary files</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1057</x>
-      <y>595</y>
-      <w>42</w>
-      <h>364</h>
+      <x>976</x>
+      <y>824</y>
+      <w>48</w>
+      <h>416</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;500.0;40.0;500.0</additional_attributes>
@@ -333,10 +333,10 @@ IO to save/ read employees to/ from pickle binary files</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>728</x>
-      <y>644</y>
-      <w>182</w>
-      <h>112</h>
+      <x>600</x>
+      <y>880</y>
+      <w>208</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>Person
 File: employee.py
@@ -354,10 +354,10 @@ get_birthday_string():string
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>728</x>
-      <y>791</y>
-      <w>182</w>
-      <h>112</h>
+      <x>600</x>
+      <y>1048</y>
+      <w>208</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>Employee
 File: employee.py
@@ -375,10 +375,10 @@ get_csv_line():string
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>798</x>
-      <y>749</y>
-      <w>21</w>
-      <h>56</h>
+      <x>680</x>
+      <y>1000</y>
+      <w>24</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;60.0</additional_attributes>
@@ -386,10 +386,10 @@ get_csv_line():string
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>693</x>
-      <y>357</y>
-      <w>119</w>
-      <h>469</h>
+      <x>560</x>
+      <y>552</y>
+      <w>136</w>
+      <h>536</h>
     </coordinates>
     <panel_attributes>lt=&lt;..
 creates and displays</panel_attributes>
@@ -398,10 +398,10 @@ creates and displays</panel_attributes>
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>378</x>
-      <y>378</y>
-      <w>287</w>
-      <h>161</h>
+      <x>200</x>
+      <y>576</y>
+      <w>328</w>
+      <h>184</h>
     </coordinates>
     <panel_attributes>inputConverter.py
 --
@@ -423,10 +423,10 @@ uses inputValidator to validate input
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>378</x>
-      <y>574</y>
-      <w>287</w>
-      <h>140</h>
+      <x>200</x>
+      <y>800</y>
+      <w>328</w>
+      <h>160</h>
     </coordinates>
     <panel_attributes>inputValidator.py
 --
@@ -446,10 +446,10 @@ validates user input based on defined rules
   <element>
     <id>UMLState</id>
     <coordinates>
-      <x>1050</x>
-      <y>140</y>
-      <w>301</w>
-      <h>70</h>
+      <x>968</x>
+      <y>304</y>
+      <w>344</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>charts.py
 --
@@ -462,10 +462,10 @@ displays supplied statistics in charts
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>427</x>
-      <y>532</y>
-      <w>210</w>
-      <h>56</h>
+      <x>256</x>
+      <y>752</y>
+      <w>240</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;..
 uses to validate data before converting</panel_attributes>
@@ -474,10 +474,10 @@ uses to validate data before converting</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>840</x>
-      <y>161</y>
-      <w>224</w>
-      <h>98</h>
+      <x>728</x>
+      <y>328</y>
+      <w>256</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>lt=&lt;..
 uses to display statistics</panel_attributes>
@@ -486,10 +486,10 @@ uses to display statistics</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1113</x>
-      <y>385</y>
-      <w>210</w>
-      <h>56</h>
+      <x>1040</x>
+      <y>584</y>
+      <w>240</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;..
 offers interface to all implementations</panel_attributes>
@@ -498,10 +498,10 @@ offers interface to all implementations</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>434</x>
-      <y>686</y>
-      <w>987</w>
-      <h>301</h>
+      <x>264</x>
+      <y>928</y>
+      <w>1128</w>
+      <h>344</h>
     </coordinates>
     <panel_attributes>lt=&lt;..
 use to validate gathered data</panel_attributes>
@@ -510,10 +510,10 @@ use to validate gathered data</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1372</x>
-      <y>798</y>
-      <w>49</w>
-      <h>21</h>
+      <x>1336</x>
+      <y>1056</y>
+      <w>56</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=..</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
@@ -521,10 +521,10 @@ use to validate gathered data</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1372</x>
-      <y>910</y>
-      <w>49</w>
-      <h>21</h>
+      <x>1336</x>
+      <y>1184</y>
+      <w>56</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=..</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
@@ -532,10 +532,10 @@ use to validate gathered data</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>434</x>
-      <y>329</y>
-      <w>308</w>
-      <h>63</h>
+      <x>264</x>
+      <y>520</y>
+      <w>352</w>
+      <h>72</h>
     </coordinates>
     <panel_attributes>lt=&lt;..
 uses to validate input for employee
@@ -545,13 +545,31 @@ creation/ updating</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>903</x>
-      <y>560</y>
-      <w>161</w>
-      <h>259</h>
+      <x>800</x>
+      <y>784</y>
+      <w>184</w>
+      <h>296</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;-
 offers access to</panel_attributes>
     <additional_attributes>210.0;10.0;50.0;10.0;50.0;350.0;10.0;350.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>216</x>
+      <y>144</y>
+      <w>368</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>Notes:
+Since some functionality of the product was realised without
+using OOP, python module files are displayed as classes with
+rounded corners
+
+The project entry point is the orange-highlighted file "starter.py",
+which can be called with .csv files as arguments.
+bg=blue</panel_attributes>
+    <additional_attributes/>
   </element>
 </diagram>
