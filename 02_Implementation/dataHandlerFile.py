@@ -61,9 +61,10 @@ class DataHandlerFile(DataHandlerAbstract):
                     skipped_first = True
                     continue
                 if line.startswith(CSV_COMMENT):
-                    print("Encountered comment: " + line)
+                    #print("Encountered comment: " + line)
                     continue
                 try:
+                    #print("reading line: " + line)
                     split = line.split(",")
                     # TODO: HIGH: validate data
                     emp_id = IC.convert_input(split[0], "empid")
@@ -80,7 +81,7 @@ class DataHandlerFile(DataHandlerAbstract):
                     employees.append(employee.create_employee(attributes))
                 except Exception as err:
                     errors.append("Error when reading line: {}".format(line))
-        #[IO.stdErr(e) for e in errors]
+        [IO.stdErr(e) for e in errors]
         return employees
 
     def save_employees(self, employees):
@@ -132,7 +133,7 @@ class DataHandlerFile(DataHandlerAbstract):
         lines = []
         with open(self._file) as source:
             for line in source:
-                if line.startswith(CSV):
+                if line.startswith(CSV_COMMENT):
                     lines.append(line)
                     continue
                 split = line.split(",")

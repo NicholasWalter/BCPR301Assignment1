@@ -98,6 +98,7 @@ class AdministratorCMD(Cmd, AdministratorAbstract):
             err = str(ferr) + " Please ensure that the file is accessible."
             self.stdErr(err)
             return False
+        print("Found {} employees:".format(len(emps)))
         [print(e) for e in emps]
 
     def do_add_employee(self, line):

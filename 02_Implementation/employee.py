@@ -23,7 +23,7 @@ class Person():
 
     def get_birthday_string(self):
         bday = self.birthday
-        return "{}-{}-{}".format(bday.year, bday.month, bday.day)
+        return "{}-{}-{}".format(bday.day, bday.month, bday.year)
 
 
 class Employee(Person):
