@@ -1,12 +1,16 @@
 """
 this module offers the functionality to display statistics in a GUI.
 All data will be displayed in a pie chart
+
+Since the entire functionality of this module consists of displaying data in
+a graphical display, no automated tests are possible.
 """
 
 # python imports
 from pylab import *
 
 # project imports
+
 
 def display_statistic(statistic, parameter, group):
     """

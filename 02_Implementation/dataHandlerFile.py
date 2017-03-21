@@ -1,6 +1,9 @@
 """
 reads data from and writes data to the configured csv file containing 
 employee information
+
+this module cannot be tested using doctest or unit test because results change
+with the state of the data source
 """
 
 # python imports
@@ -76,9 +79,8 @@ class DataHandlerFile(DataHandlerAbstract):
                     # TODO: high: catch ValueError from employee creation
                     employees.append(employee.create_employee(attributes))
                 except Exception as err:
-                    print(str(err))
                     errors.append("Error when reading line: {}".format(line))
-        [IO.stdErr(e) for e in errors]
+        #[IO.stdErr(e) for e in errors]
         return employees
 
     def save_employees(self, employees):

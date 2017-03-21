@@ -5,6 +5,8 @@ Considering the scope of the project, all data read will be read directly from
 the datasources every time it is accessed. In a larger scale product, this would
 obviously harm performance.
 Furthermore nothing in here is safe to be used by multiple users simultaneously.
+
+Nothing in here can be tested as it is only an interface to user commands.
 """
 
 # python imports
@@ -21,6 +23,7 @@ import employee
 import inputConverter as IC
 import inputValidator as IV
 import util
+
 
 class AdministratorCMD(Cmd, AdministratorAbstract):
     """
@@ -51,13 +54,11 @@ class AdministratorCMD(Cmd, AdministratorAbstract):
 
     def do_datasource(self, line):
         """
-        Syntax: set_datasource [datasource]
+        Syntax: datasource [datasource]
         Sets the current datasource to the specified item.
 
         At startup, the datasource is set to "csv" per default.
 
-        To use datasources other than the default options, use:
-        set_custom_datasource()
         parameters:
             datasource:
                 Use "db" to set to the default database.
@@ -203,6 +204,9 @@ class AdministratorCMD(Cmd, AdministratorAbstract):
         if not IV.validate_input_employee_id(line):
             print("invalid employee id.")
             self.do_help("update_employee")
+            return False
+        if not dataHandler.employee_exists(line, self._datasource):
+            print("employee does not exist.")
             return False
         to_change = dataHandler.get_employee(line, self._datasource)
         print("The employee to change:")

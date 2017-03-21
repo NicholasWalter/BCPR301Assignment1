@@ -1,5 +1,8 @@
 """
 this module offers the AdministratorAbstract class
+
+since this module only offers an interface for other classes to implement and
+no actual functionality, nothing can be tested in here.
 """
 
 # python imports

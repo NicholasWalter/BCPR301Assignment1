@@ -1,6 +1,9 @@
 """
 this module offers the DataHandlerAbstract class, bundling functionality that
 both DataHandlerFile and DataHandlerDatabase need.
+
+this module cannot be tested using doctest or unit test because results change
+with the state of the data source
 """
 
 # python imports

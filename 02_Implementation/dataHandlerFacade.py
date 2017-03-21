@@ -2,6 +2,9 @@
 this module acts as a facade to dataHandlerFile.py and dataHandlerDatabase.py
 input and ouput goes to/ comes from both sources.
 though redundant, this is okay in the context of the assignment.
+
+this module cannot be tested using doctest or unit test because results change
+with the state of the data source
 """
 
 # python imports

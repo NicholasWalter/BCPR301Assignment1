@@ -3,6 +3,9 @@ this module offers the DataHandlerDataBase class, opening connections to a
 MySQL database to save and read employees to and from.
 
 This does NOT protect against SQL injection at all
+
+this module cannot be tested using doctest or unit test because results change
+with the state of the data source
 """
 
 # python imports

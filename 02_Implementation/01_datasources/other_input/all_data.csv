@@ -67,3 +67,14 @@ A129,M,129,Underweight,29,10-9-1994,22
 A130,F,130,Underweight,30,11-10-1995,21
 A131,M,131,Normal,31,3-4-1980,36
 A132,F,132,Overweight,32,8-7-1985,31
+$ Josiah Witheford's data
+J123,Male,200,Normal,20000,5-7-1996,20
+H234,Female,400 Overweight,50000,2-3-1993,24
+G555,Male,2,Underweight,25,2-3-2000,21
+E001,Female,350,Obese,42000,1-1-2000,17
+L223,Male,0,Average,56700,1-1-1917,100
+J123,Male,200,Normal,20000,5-7-1996,20
+B007,Male,500,Normal,100000,2-21-1977,40
+Z555,Female,52,Underweight,38000,3-17-1996,21
+T099,Female,15,Obese,0,8-25-1998,18
+456H,Both,0,Underweight,500,5-5-1855,150

@@ -2,6 +2,9 @@
 this module offers the functionality of serializing objects and restoring them
 to memory. All objects will be stored in files with their employee id as name
 and .emp as extension.
+
+this module cannot be tested using doctest or unit test because results change
+with the state of the data source
 """
 
 # python imports
@@ -12,6 +15,7 @@ import pickle
 # project imports
 from dataHandlerAbstract import DataHandlerAbstract
 import IOHelper as IO
+
 
 class DataHandlerSerial(DataHandlerAbstract):
     def __init__(self, save_path = "XXX"):

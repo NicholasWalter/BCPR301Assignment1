@@ -5,6 +5,7 @@ else
 
 # python imports
 import datetime
+import doctest
 import sys
 
 # project imports
@@ -19,15 +20,18 @@ def calculate_age(born):
         employee's birthday
     @return:
         age of employee in years as integer        
+    >>> born = datetime.date(1995, 10, 14)
+    >>> calculate_age(born)
+    21
     """
     today = datetime.date.today()
     return today.year - born.year - ((today.month, today.day) < (born.month, born.day))
+
 
 def exit():
     IOHelper.stdOut("Exiting program. Goodbye.")
     sys.exit()
 
 if __name__ == "__main__":
-    split = sys.argv[1].split("-")
-    bday = datetime.date(int(split[0]), int(split[1]), int(split[2]))
-    print(calculate_age(bday))
+    print("testing util.py")
+    doctest.testmod()
