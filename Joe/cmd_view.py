@@ -1,3 +1,6 @@
+'''
+ Hello this is the xxxxxxdsadasd
+'''
 import cmd
 import string
 import sys
@@ -14,6 +17,7 @@ class CLI(cmd.Cmd):
     def __init__(self):
         cmd.Cmd.__init__(self)
         self.prompt = '> '
+        self.show(__doc__)
 
     def set_controller(self, ctl):
         self.ctl = ctl
@@ -65,6 +69,21 @@ class CLI(cmd.Cmd):
     def help_line_chart(self):
         print("syntax: line_chart")
         print("-- display a line_chart in chrome")
+
+    def do_db_save(self, arg):
+        self.ctl.db_save()
+
+    def help_db_save(self):
+        print("syntax: db_save")
+        print("-- save date in database")
+
+    def do_db_load(self, arg):
+        self.ctl.db_load()
+
+
+    def help_db_load(self):
+        print("syntax: db_load")
+        print("-- load data from database")
 
     def input(self, arg):
         input_data = input(arg)

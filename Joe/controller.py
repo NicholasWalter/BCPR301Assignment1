@@ -1,7 +1,3 @@
-#
-# import inject
-# import string
-# import sys
 from validator import Validator
 from serialization import Serialization
 from graphy_display import Bar_chart
@@ -20,10 +16,6 @@ class Controller(object):
 
     def test(self, data):
         self.display_bar()
-        # if self.validator.is_valid_birthday(data):
-        #     print("correct")
-        # else:
-        #     print("no")
 
     def new_employee(self):
         input_data = dict(self.input_employee_id())
@@ -56,7 +48,6 @@ class Controller(object):
                     print("invalid data")
             f.close()
         except IOError:
-
             self.__view.show('error : wrong path')
 
     def save_file(self, path):
@@ -70,46 +61,69 @@ class Controller(object):
         except IOError:
             self.__view.show('error : wrong path')
 
-
-
     def convert_dict(self, key, string):
         d = dict({key: string})
         return d
 
     def serialise_objects(self, path):
         try:
-            path += '/data.pickle'
-            sf = self.serialization.open(path, "wb")
-            # sf = self.serialization.open('C:/Users/JOE3/Desktop/python/data.pickle', "wb")
-            for employee in self.model.employees:
-                self.serialization.dump(sf, employee)
-            sf.close()
-            sf = self.serialization.open(path, "rb")
-            print(self.serialization.load(sf))
-            print(self.serialization.load(sf))
-            print(self.serialization.load(sf))
-            print(self.serialization.load(sf))
-            self.serialization.close(sf)
+            if self.model.employees.__len__() == 0:
+                path += '/data.pickle'
+                sf = self.serialization.open(path, "wb")
+                for employee in self.model.employees:
+                    self.serialization.dump(sf, employee)
+                sf.close()
+                sf = self.serialization.open(path, "rb")
+                print(self.serialization.load(sf))
+                print(self.serialization.load(sf))
+                print(self.serialization.load(sf))
+                print(self.serialization.load(sf))
+                self.serialization.close(sf)
+                self.__view.show("success")
+            else:
+                raise ValueError
         except IOError:
             self.__view.show('error : wrong path')
+        except ValueError:
+            self.__view.show('data error')
 
     def display_bar(self):
         try:
-            self.bar_chart.title = 'Salary by Age'
-            # Add some values
-            self.bar_chart.add('Salary', self.model.get_all_salaries())
-           # self.bar_chart.x_labels = map(str, range(10, 50))
-            self.bar_chart.x_labels = map(int, self.model.get_all_age())
-            # Save the svg to a file
-            self.bar_chart.render_to_file('bar_chart.svg')
-            self.bar_chart.show_in_chrome('bar_chart.svg')
+            if(self.model.get_all_salaries().__len__() != 0):
+                self.bar_chart.title = 'Salary by Age'
+                self.bar_chart.add('Salary', self.model.get_all_salaries())
+                self.bar_chart.x_labels = map(int, self.model.get_all_age())
+                #self.bar_chart.render_to_png('/tmp/chart.png')
+                self.bar_chart.render_to_file('bar_chart.svg')
+                self.bar_chart.show_in_chrome('bar_chart.svg')
+            else:
+                raise ValueError
         except ValueError:
-            self.__view.show('error')
+            self.__view.show('system has not data')
+
+    def db_save(self):
+        try:
+            llist = []
+            for employee in self.model.employees:
+                llist.append(employee.__str__())
+            self.__view.show(llist)
+        except Exception as e:
+            self.__view.show(e)
+        # except ValueError:
+        #     self.__view.show('error')
+
+    # def db_load(self):
+        # try:
+
+        # except Exception as e:
+        #     self.__view.show((e)
+        # except ValueError:
+        #     self.__view.show('error')
 
     def input_employee_id(self):
         while True:
             try:
-                input_data = self.__view.input("Please input employee ID : ")
+                input_data=self.__view.input("Please input employee ID : ")
                 if self.validator.is_valid_employee_id(input_data):
                     break
                 else:
@@ -122,7 +136,7 @@ class Controller(object):
     def input_gender(self):
         while True:
             try:
-                input_data = self.__view.input("Please input gender M/F : ")
+                input_data=self.__view.input("Please input gender M/F : ")
                 if self.validator.is_valid_gender(input_data):
                     break
                 else:
@@ -135,7 +149,7 @@ class Controller(object):
     def input_age(self):
         while True:
             try:
-                input_data = self.__view.input("Please input two digit age : ")
+                input_data=self.__view.input("Please input two digit age : ")
                 if self.validator.is_valid_age(input_data):
                     break
                 else:
@@ -148,7 +162,7 @@ class Controller(object):
     def input_sales(self):
         while True:
             try:
-                input_data = self.__view.input(
+                input_data=self.__view.input(
                     "Please input three digit sales : ")
                 if self.validator.is_valid_sales(input_data):
                     break
@@ -160,15 +174,15 @@ class Controller(object):
         return {"Sales": input_data}
 
     def input_BMI(self):
-        options = ['Normal', 'Overweight', 'Obesity', 'Underweight']
+        options=['Normal', 'Overweight', 'Obesity', 'Underweight']
         for (i, item) in enumerate(options):
             self.__view.show(i + 1, item)
         while True:
             try:
-                input_data = int(
+                input_data=int(
                     self.__view.input("Please select the BMI number:"))
                 if input_data >= 1 and input_data <= 4:
-                    input_data = options[input_data - 1]
+                    input_data=options[input_data - 1]
                 if self.validator.is_valid_BMI(input_data):
                     break
                 else:
@@ -181,7 +195,7 @@ class Controller(object):
     def input_salary(self):
         while True:
             try:
-                input_data = self.__view.input(
+                input_data=self.__view.input(
                     "Please input the 2or3 digit salary : ")
                 if self.validator.is_valid_salary(input_data):
                     break
@@ -193,10 +207,10 @@ class Controller(object):
         return {"Salary": input_data}
 
     def input_birthday(self):
-        prompt = "Please input the birthday day-month-year : "
+        prompt="Please input the birthday day-month-year : "
         while True:
             try:
-                input_data = self.__view.input(prompt)
+                input_data=self.__view.input(prompt)
                 if self.validator.is_valid_birthday(input_data):
                     break
                 else:
