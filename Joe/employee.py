@@ -14,8 +14,10 @@ class Employee(object):
         self.birthday = datetime.strptime(birthday, '%d-%m-%Y')
 
     def __str__(self):
-        txt = self.id + ',' + self.gender + ',' + self.age + ',' + self.sales + ',' 
-        txt += self.BMI +',' + self.salary + ',' + self.birthday.strftime('%m-%d-%Y')
-        return txt    
+        txt = self.id + ',' + self.gender + ',' + \
+            self.age + ',' + self.sales + ','
+        txt += self.BMI + ',' + self.salary + \
+            ',' + self.birthday.strftime('%d-%m-%Y')
+        return txt
     # def speak(self):))
     #    print self.words

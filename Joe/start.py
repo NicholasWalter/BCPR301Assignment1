@@ -1,19 +1,19 @@
 '''
-	Welcome to Employees Management System.
+    Welcome to Employees Management System.
 
-	Command arguments:
+    Command arguments:
 
-		To input a file :
+        To input a file :
 
-			python start.py -i <directory path of inputfile>
+            python start.py -i <directory path of inputfile>
 
-		To start the program without inputting a file :
+        To start the program without inputting a file :
 
-			python start.py -s <directory path of inputfile>
+            python start.py -s <directory path of inputfile>
 
-		help:
+        help:
 
-			python start.py -h
+            python start.py -h
 '''
 import os
 import sys
@@ -36,10 +36,7 @@ except getopt.GetoptError:
     sys.exit(2)
 for opt, arg in opts:
     if opt == '-h':
-        print('syntax: start.py -i <directory path of inputfile>')
-        print('-- inputfile')
-        print('syntax: start.py -s')
-        print('-- start the system')
+        print(__doc__)
         sys.exit()
     elif opt in ("-i", "--ifile"):
         inputfile = arg
@@ -47,5 +44,3 @@ for opt, arg in opts:
         cli.cmdloop()
     elif opt in ("-s"):
         cli.cmdloop()
-
-print(__doc__)

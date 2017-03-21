@@ -18,6 +18,4 @@ class Serialization(object):
         return self.__pickle.load(file)
 
     def close(self, file):
-    	file.close()
-
-# with open('C:/Users/JOE3/Desktop/python/data.pickle', 'wb') as f:
+        file.close()
