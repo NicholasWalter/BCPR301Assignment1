@@ -87,15 +87,9 @@ class Controller(AbstractController):
             if self.model.employees.__len__() != 0:
                 path += '/data.pickle'
                 sf = self.serialization.open(path, "wb")
-                for employee in self.model.employees:
-                    self.serialization.dump(sf, employee)
+               # for employee in self.model.employees:
+                self.serialization.dump(sf, self.model.employees)
                 sf.close()
-                sf = self.serialization.open(path, "rb")
-                print(self.serialization.load(sf))
-                print(self.serialization.load(sf))
-                print(self.serialization.load(sf))
-                print(self.serialization.load(sf))
-                self.serialization.close(sf)
                 self.__view.show("ok")
             else:
                 raise ValueError
@@ -103,6 +97,30 @@ class Controller(AbstractController):
             self.__view.show('error : wrong path')
         except ValueError:
             self.__view.show('data error')
+
+    def pickle_load(self, path):
+        try:
+            #sf = self.serialization.open(path, "rb")
+            with self.serialization.open(path, "rb") as f:
+                object_list = self.serialization.load(f)
+                if object_list == False:
+                    raise ValueError
+            valided_object_list = []
+            for e in object_list:
+                for ee in self.model.employees:
+                    if ee.id == e.id:
+                        self.__view.show('unique constraint failed')
+                        valided_object_list.append(e)
+            new = set(object_list) - set(valided_object_list)
+            self.model.employees += list(new)
+            for e in new:
+                self.__view.show(e)
+        except IOError:
+            self.__view.show('error : wrong path')
+        except ValueError:
+            self.__view.show('data error')
+        finally:
+            f.close() 
 
     def display_bar(self):
         try:
@@ -113,7 +131,11 @@ class Controller(AbstractController):
                     pass
                 self.bar_chart.title = 'Salary by Age'
                 self.bar_chart.add('Salary', self.model.get_all_salaries())
-                self.bar_chart.x_labels = map(int, self.model.get_all_age())
+                age_list = []
+                for age in self.model.get_all_age():
+                    age_list.append(str(age) + '-year-old')
+                age_list.sort()
+                self.bar_chart.x_labels = map(str, age_list)
                 # self.bar_chart.render_to_png('/tmp/chart.png')
                 self.bar_chart.render_to_file('bar_chart.svg')
                 self.bar_chart.show_in_chrome('bar_chart.svg')
@@ -142,6 +164,8 @@ class Controller(AbstractController):
     def db_load(self):
         try:
             l = self.db.fetch_all_employees()
+            if(bool(l) == False):
+                raise ValueError
             if l.__len__() == 0:
                 raise ValueError
             for employee in l:

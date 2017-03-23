@@ -130,6 +130,20 @@ class CLI(cmd.Cmd):
         '''
         self.ctl.serialise_objects(path)
 
+    def do_pickle_load(self, path):
+        '''
+        syntax: pickle_load [path of the file]
+        -- load objects from data.pickle file
+        parameters:
+            path of the local storage
+        output:
+            list of Objects 
+                    or
+            "error : wrong path"
+               "data error"
+        '''
+        self.ctl.pickle_load(path)
+
     # def help_serialise(self):
     #     print("syntax: serialise [path of the file]"),
     #     print("-- add the file data")

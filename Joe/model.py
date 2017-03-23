@@ -15,11 +15,19 @@ class Model(object):
         self.employees = []
 
     def add_the_employee(self, data):
+        result = ""
+        sign   = True
         new_employee = Employee(data['EMPID'], data['Gender'], data['Age'], data[
                                 'Sales'], data['BMI'], data['Salary'], data['Birthday'])
-        self.employees.append(new_employee)
+        for e in self.employees:
+            if e.id == new_employee.id:
+                result = "unique constraint failed"
+                sign = False
+        if sign :
+            result = new_employee      
+            self.employees.append(new_employee)
         # print(self.employees)
-        return new_employee
+        return result
 
     def get_all_salaries(self):
         salary_list = []

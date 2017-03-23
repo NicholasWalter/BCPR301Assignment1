@@ -34,7 +34,7 @@ class DB(object):
 
     def insert_employee_data(self, list):
         try:
-            result = "success"
+            result = ""
             self.db_connect()
             for p in list:
                 format_str = """INSERT INTO employee (staff_id, gender, age, sales, bmi, salary, birthday) VALUES ("{id}", "{gender}", "{age}", "{sales}", "{bmi}", "{salary}", "{birthday}");"""
@@ -42,8 +42,9 @@ class DB(object):
                     id=p[0], gender=p[1], age=p[2], sales=p[3], bmi=p[4], salary=p[5], birthday=p[6])
                 try:
                     self.db_cursor.execute(sql_command)
+                    result += "insert data success \n"
                 except Exception as e:
-                    pass  # print(e)
+                    result += "insert data fail \n"
                 time.sleep(0.25)
         except Exception as e:
             result = "database saving fail"
@@ -59,11 +60,13 @@ class DB(object):
             self.db_cursor.execute("SELECT * FROM employee")
             # print("fetchall:")
             result = self.db_cursor.fetchall()
+            if bool(result) == False:
+                raise Exception("not data in database")
             # for r in result:
             # 	print(r)
             return result
         except Exception as e:
-            pass  # print(e)
+            print(e)
         finally:
             self.close()
 

@@ -15,7 +15,10 @@ class Serialization(object):
         self.__pickle.dump(obejct, file)
 
     def load(self, file):
-        return self.__pickle.load(file)
-
+        try:
+            ob = self.__pickle.load(file)
+            return ob
+        except EOFError:
+            return False
     def close(self, file):
         file.close()
