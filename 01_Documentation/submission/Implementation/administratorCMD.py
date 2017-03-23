@@ -98,7 +98,6 @@ class AdministratorCMD(Cmd, AdministratorAbstract):
             err = str(ferr) + " Please ensure that the file is accessible."
             self.stdErr(err)
             return False
-        print("Found {} employees:".format(len(emps)))
         [print(e) for e in emps]
 
     def do_add_employee(self, line):
@@ -161,7 +160,9 @@ class AdministratorCMD(Cmd, AdministratorAbstract):
         output:
             A description for any error in the reading/ saving process
         """
+        print("####" + line)
         split = line.split(" ")
+        print("####" + str(split)) 
         # check input
         if not len(split) == 2:
             print("invalid parameters: " + line)
@@ -313,7 +314,7 @@ class AdministratorCMD(Cmd, AdministratorAbstract):
                 if item.endswith(".csv"):
                     self.do_read_csv_file(item + " csv")
                 else:
-                    print('invalid parameter: "{}", skipping'.format(item))
+                    print("invalid parameter: {}, skipping...".format(item))
         Cmd.cmdloop(self)
 
     def stdOut(self, msg):

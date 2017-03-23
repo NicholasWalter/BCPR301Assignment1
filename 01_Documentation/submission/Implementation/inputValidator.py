@@ -240,6 +240,7 @@ def _valid_input_integer(integer_input, digits):
         integer_input = int(integer_input)
     except:
         # not an integer
+        print("not an integer")
         return False
     return integer_input in range(10**digits)
 

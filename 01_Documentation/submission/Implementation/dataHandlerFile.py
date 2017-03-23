@@ -81,7 +81,7 @@ class DataHandlerFile(DataHandlerAbstract):
                     employees.append(employee.create_employee(attributes))
                 except Exception as err:
                     errors.append("Error when reading line: {}".format(line))
-        [IO.stdErr(e) for e in errors]
+        #[IO.stdErr(e) for e in errors]
         return employees
 
     def save_employees(self, employees):
@@ -133,7 +133,7 @@ class DataHandlerFile(DataHandlerAbstract):
         lines = []
         with open(self._file) as source:
             for line in source:
-                if line.startswith(CSV_COMMENT):
+                if line.startswith(CSV):
                     lines.append(line)
                     continue
                 split = line.split(",")
